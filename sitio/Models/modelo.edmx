@@ -1,0 +1,2738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="llave" Type="varchar(max)" />
+          <Property Name="clave" Type="varchar(max)" />
+          <Property Name="nombre" Type="varchar(max)" />
+          <Property Name="fecha" Type="varchar" MaxLength="10" />
+          <Property Name="tipo" Type="varchar" MaxLength="1" />
+          <Property Name="idPadre" Type="int" />
+          <Property Name="idSuscriptor" Type="int" />
+          <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="llave" Type="varchar(max)" />
+          <Property Name="clave" Type="varchar(max)" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="descricpion" Type="varchar(max)" />
+          <Property Name="idTipoCliente" Type="varchar" MaxLength="1" />
+          <Property Name="idEstado" Type="int" />
+          <Property Name="idSuscriptor" Type="int" />
+          <Property Name="idOperacion" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="100" />
+          <Property Name="apellidoMaterno" Type="varchar" MaxLength="100" />
+          <Property Name="rfc" Type="varchar" MaxLength="20" />
+          <Property Name="curp" Type="varchar" MaxLength="30" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="telefonoMovil" Type="varchar" MaxLength="10" />
+          <Property Name="correo" Type="varchar(max)" />
+          <Property Name="genero" Type="varchar" MaxLength="1" />
+          <Property Name="direccion" Type="varchar(max)" />
+          <Property Name="referencia" Type="nvarchar" MaxLength="50" />
+          <Property Name="banco" Type="varchar(max)" />
+          <Property Name="cuentaBanco" Type="varchar(max)" />
+          <Property Name="importe" Type="int" />
+          <Property Name="saldo" Type="int" />
+          <Property Name="rutaFoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="urlFoto" Type="varchar(max)" />
+          <Property Name="fechaNacimiento" Type="varchar" MaxLength="10" />
+          <Property Name="fecha" Type="varchar" MaxLength="10" />
+          <Property Name="fechaEntrega" Type="varchar" MaxLength="10" />
+          <Property Name="fechaRegistro" Type="varchar" MaxLength="10" />
+          <Property Name="idSocio" Type="int" />
+          <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Configuracion">
+          <Key>
+            <PropertyRef Name="IdConfiguracion" />
+          </Key>
+          <Property Name="IdConfiguracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Valor" Type="nvarchar(max)" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="IdAplicacion" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="CuentaUsuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cuenta" Type="varchar" MaxLength="100" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="250" />
+          <Property Name="IdEstacionTrabajo" Type="varchar" MaxLength="50" />
+          <Property Name="IdUsuarioSuperior" Type="int" />
+          <Property Name="FechaRegistro" Type="smalldatetime" />
+          <Property Name="FechaVigencia" Type="smalldatetime" />
+          <Property Name="FechaCambioEstatus" Type="smalldatetime" />
+          <Property Name="Tema" Type="varchar" MaxLength="30" />
+          <Property Name="IdEstatusUsuario" Type="smallint" />
+          <Property Name="Activo" Type="tinyint" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="Sesiones" Type="int" />
+          <Property Name="Intentos" Type="int" />
+          <Property Name="IdIdioma" Type="int" />
+          <Property Name="Perfiles" Type="nvarchar(max)" />
+          <Property Name="Grupos" Type="nvarchar(max)" />
+          <Property Name="Expira" Type="bit" />
+          <Property Name="Privilegios" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Directorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="llave" Type="varchar(max)" />
+          <Property Name="clave" Type="varchar(max)" />
+          <Property Name="fecha" Type="varchar" MaxLength="10" />
+          <Property Name="nombre" Type="varchar(max)" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="tipo" Type="varchar" MaxLength="1" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="correo" Type="varchar(max)" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="idSubCategoria" Type="int" />
+          <Property Name="idGiro" Type="int" />
+          <Property Name="latitud" Type="varchar" MaxLength="20" />
+          <Property Name="longitud" Type="varchar" MaxLength="20" />
+          <Property Name="geometria" Type="geometry" />
+          <Property Name="rutaFoto" Type="varchar(max)" />
+          <Property Name="urlFoto" Type="varchar(max)" />
+          <Property Name="urlVideo" Type="varchar(max)" />
+          <Property Name="paginaWeb" Type="varchar(max)" />
+          <Property Name="facebook" Type="varchar(max)" />
+          <Property Name="youTube" Type="varchar(max)" />
+          <Property Name="otraRedSocial" Type="varchar(max)" />
+          <Property Name="idSuscriptor" Type="int" />
+          <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clave" Type="nvarchar" MaxLength="100" />
+          <Property Name="llave" Type="nvarchar(max)" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="250" />
+          <Property Name="orden" Type="int" />
+          <Property Name="idActividad" Type="int" />
+          <Property Name="idAccion" Type="nvarchar(max)" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="FlujoTrabajoDocumento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDocumento" Type="int" />
+          <Property Name="idReferencia" Type="int" />
+          <Property Name="idActividad" Type="int" />
+          <Property Name="idAccion" Type="nvarchar(max)" />
+          <Property Name="ruta" Type="nvarchar(max)" />
+          <Property Name="fechaEstatus" Type="smalldatetime" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="FTAvanzarActividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clave" Type="nvarchar" MaxLength="100" />
+          <Property Name="identificador" Type="nvarchar" MaxLength="250" />
+          <Property Name="idAccion" Type="nvarchar(max)" />
+          <Property Name="idTarea" Type="int" />
+          <Property Name="claveEstatus" Type="nvarchar" MaxLength="250" />
+          <Property Name="parametros" Type="nvarchar(max)" />
+          <Property Name="variables" Type="nvarchar(max)" />
+          <Property Name="llave" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="IdGrupo" />
+          </Key>
+          <Property Name="IdGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="60" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="Privilegios" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NivelRed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="llave" Type="varchar(max)" />
+          <Property Name="clave" Type="varchar(max)" />
+          <Property Name="nombre" Type="varchar(max)" />
+          <Property Name="comision" Type="float" />
+          <Property Name="orden" Type="int" />
+          <Property Name="socios" Type="int" />
+          <Property Name="operaciones" Type="int" />
+          <Property Name="importes" Type="int" />
+          <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Pagina" Type="varchar" MaxLength="100" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="IdMenu" Type="int" />
+          <Property Name="Privilegios" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoPersona" Type="varchar" MaxLength="1" />
+          <Property Name="RFC" Type="varchar" MaxLength="15" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Curp" Type="varchar" MaxLength="19" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+          <Property Name="Genero" Type="varchar" MaxLength="1" />
+          <Property Name="Correo" Type="varchar" MaxLength="150" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="TelefonoMovil" Type="varchar" MaxLength="30" />
+          <Property Name="Saldo" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Suscripcion">
+          <Key>
+            <PropertyRef Name="IdSuscriptor" />
+          </Key>
+          <Property Name="IdSuscriptor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCorto" Type="varchar" MaxLength="50" />
+          <Property Name="Tipo" Type="varchar" MaxLength="3" />
+          <Property Name="FechaContratacion" Type="smalldatetime" />
+          <Property Name="FechaInicio" Type="smalldatetime" />
+          <Property Name="FechaVencimiento" Type="smalldatetime" />
+          <Property Name="Servicios" Type="varchar" MaxLength="250" />
+          <Property Name="NumeroUsuarios" Type="smallint" />
+          <Property Name="IdPersona" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="IdSuscriptorSuperior" Type="int" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="llave" Type="varchar(max)" />
+          <Property Name="clave" Type="varchar(max)" />
+          <Property Name="nombre" Type="varchar(max)" />
+          <Property Name="fecha" Type="varchar" MaxLength="10" />
+          <Property Name="cuenta" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="50" />
+          <Property Name="perfiles" Type="nvarchar(max)" />
+          <Property Name="grupos" Type="nvarchar(max)" />
+          <Property Name="privilegios" Type="nvarchar(max)" />
+          <Property Name="idEstacionTrabajo" Type="varchar" MaxLength="50" />
+          <Property Name="tema" Type="varchar" MaxLength="30" />
+          <Property Name="idIdioma" Type="int" />
+          <Property Name="sesiones" Type="int" />
+          <Property Name="intentos" Type="int" />
+          <Property Name="expira" Type="smallint" />
+          <Property Name="fechaVigencia" Type="varchar" MaxLength="10" />
+          <Property Name="idUsuarioSuperior" Type="int" />
+          <Property Name="idSuscriptor" Type="int" />
+          <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+          <Property Name="estatus" Type="smallint" />
+        </EntityType>
+        <Function Name="ActualizarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="llave" Type="varchar(max)" Mode="In" />
+          <Parameter Name="clave" Type="varchar(max)" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar(max)" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="idSubCategoria" Type="int" Mode="In" />
+          <Parameter Name="idGiro" Type="int" Mode="In" />
+          <Parameter Name="latitud" Type="varchar" Mode="In" />
+          <Parameter Name="longitud" Type="varchar" Mode="In" />
+          <Parameter Name="rutaFoto" Type="varchar(max)" Mode="In" />
+          <Parameter Name="urlFoto" Type="varchar(max)" Mode="In" />
+          <Parameter Name="urlVideo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="paginaWeb" Type="varchar(max)" Mode="In" />
+          <Parameter Name="facebook" Type="varchar(max)" Mode="In" />
+          <Parameter Name="youTube" Type="varchar(max)" Mode="In" />
+          <Parameter Name="otraRedSocial" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idSuscriptor" Type="int" Mode="In" />
+          <Parameter Name="fechaEstatus" Type="varchar" Mode="In" />
+          <Parameter Name="estatus" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="AvanzarActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaveFlujo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdAccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdTarea" Type="int" Mode="In" />
+          <Parameter Name="ClavEstatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="Parametros" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CalcularComisionLineaIV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="saldoSubcuenta" Type="int" Mode="In" />
+          <Parameter Name="importeOperacion" Type="int" Mode="In" />
+          <Parameter Name="porcentajeObra" Type="float" Mode="In" />
+          <Parameter Name="porcentajeEfectivo" Type="float" Mode="In" />
+          <Parameter Name="operacion" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id" Type="int" />
+                <Property Name="concepto" Type="nvarchar(max)" />
+                <Property Name="comision" Type="nvarchar(max)" />
+                <Property Name="importe" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ConsultarDirectorios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="RadioMetros" Type="float" Mode="In" />
+          <Parameter Name="Giro" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Categoria" Type="varchar(max)" Mode="In" />
+          <Parameter Name="SubCategoria" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ConsultarDocumentosFlujoTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ideferencia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultarEstadisticas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="RadioMetros" Type="float" Mode="In" />
+        </Function>
+        <Function Name="ConsultarHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultarMisPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultarNegocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+          <Parameter Name="RadioMetros" Type="float" Mode="In" />
+          <Parameter Name="Giro" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ConsultarServiciosPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="filtro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="llave" Type="varchar(max)" Mode="In" />
+          <Parameter Name="clave" Type="varchar(max)" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar(max)" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="idSubCategoria" Type="int" Mode="In" />
+          <Parameter Name="idGiro" Type="int" Mode="In" />
+          <Parameter Name="latitud" Type="varchar" Mode="In" />
+          <Parameter Name="longitud" Type="varchar" Mode="In" />
+          <Parameter Name="rutaFoto" Type="varchar(max)" Mode="In" />
+          <Parameter Name="urlFoto" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UrlVideo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="paginaWeb" Type="varchar(max)" Mode="In" />
+          <Parameter Name="facebook" Type="varchar(max)" Mode="In" />
+          <Parameter Name="youTube" Type="varchar(max)" Mode="In" />
+          <Parameter Name="otraRedSocial" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idSuscriptor" Type="int" Mode="In" />
+          <Parameter Name="fechaEstatus" Type="varchar" Mode="In" />
+          <Parameter Name="estatus" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="Seguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerCalcularComisionLineaIV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="saldoSubcuenta" Type="int" Mode="In" />
+          <Parameter Name="importeOperacion" Type="int" Mode="In" />
+          <Parameter Name="porcentajeObra" Type="float" Mode="In" />
+          <Parameter Name="porcentajeEfectivo" Type="float" Mode="In" />
+          <Parameter Name="operacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerDashBoard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdTarea" Type="int" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasDetalleFlujoTrabajoPorTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdTarea" Type="int" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasFlujoPorVariable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasFlujoPorVista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasFlujoPorVistaDetallePorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasFlujoTrabajoPorEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasFlujoTrabajoPorTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasPorVariableHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstadisticasTrabajoPorEstatusHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerEstatusTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTarea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerFlujoTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumeroVersion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerInfoInstancia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInstancia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerlujoTrabajoPorTareaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerProductividadPorTareaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdTarea" Type="int" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerProductividadVencidas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerProductividadVencidasdDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+          <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdIdioma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="VerVariablesInstancia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInstancia" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentaUsuario" EntityType="Self.CuentaUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Directorio" EntityType="Self.Directorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlujoTrabajoDocumento" EntityType="Self.FlujoTrabajoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FTAvanzarActividad" EntityType="Self.FTAvanzarActividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NivelRed" EntityType="Self.NivelRed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="idPadre" Type="Int32" />
+          <Property Name="idSuscriptor" Type="Int32" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Directorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="idSubCategoria" Type="Int32" />
+          <Property Name="idGiro" Type="Int32" />
+          <Property Name="latitud" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="longitud" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="geometria" Type="Geometry" />
+          <Property Name="rutaFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="urlVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="paginaWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="youTube" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="otraRedSocial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idSuscriptor" Type="Int32" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <EntityType Name="NivelRed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="comision" Type="Double" />
+          <Property Name="orden" Type="Int32" />
+          <Property Name="socios" Type="Int32" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+          <Property Name="operaciones" Type="Int32" />
+          <Property Name="importes" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="modelo" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Directorio" EntityType="Self.Directorio" />
+          <EntitySet Name="NivelRed" EntityType="Self.NivelRed" />
+          <FunctionImport Name="ConsultarHistorial" ReturnType="Collection(db.ConsultarHistorial_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Identificador" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Seguimiento" ReturnType="Collection(db.Seguimiento_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Identificador" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasFlujoTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasFlujoTrabajoPorEstatus_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasHistorialPorVariable" ReturnType="Collection(db.VerEstadisticasHistorialPorVariable_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasHistorialTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasHistorialTrabajoPorEstatus_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasPorVariableHistorial" ReturnType="Collection(db.VerEstadisticasPorVariableHistorial_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasTrabajoPorEstatusHistorial" ReturnType="Collection(db.VerEstadisticasTrabajoPorEstatusHistorial_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerProductividadPorTarea" ReturnType="Collection(db.VerProductividadPorTarea_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerProductividadPorTareaDetalle" ReturnType="Collection(db.VerProductividadPorTareaDetalle_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerFlujoTrabajo" ReturnType="Collection(db.VerFlujoTrabajo_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="NumeroVersion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarDirectorio">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="llave" Mode="In" Type="String" />
+            <Parameter Name="clave" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="idSubCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="idGiro" Mode="In" Type="Int32" />
+            <Parameter Name="latitud" Mode="In" Type="String" />
+            <Parameter Name="longitud" Mode="In" Type="String" />
+            <Parameter Name="rutaFoto" Mode="In" Type="String" />
+            <Parameter Name="urlFoto" Mode="In" Type="String" />
+            <Parameter Name="urlVideo" Mode="In" Type="String" />
+            <Parameter Name="paginaWeb" Mode="In" Type="String" />
+            <Parameter Name="facebook" Mode="In" Type="String" />
+            <Parameter Name="youTube" Mode="In" Type="String" />
+            <Parameter Name="otraRedSocial" Mode="In" Type="String" />
+            <Parameter Name="idSuscriptor" Mode="In" Type="Int32" />
+            <Parameter Name="fechaEstatus" Mode="In" Type="String" />
+            <Parameter Name="estatus" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarDirectorios" ReturnType="Collection(db.ConsultarDirectorios_Result)">
+            <Parameter Name="Latitud" Mode="In" Type="String" />
+            <Parameter Name="Longitud" Mode="In" Type="String" />
+            <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+            <Parameter Name="Giro" Mode="In" Type="String" />
+            <Parameter Name="Categoria" Mode="In" Type="String" />
+            <Parameter Name="SubCategoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarEstadisticas" ReturnType="Collection(db.ConsultarEstadisticas_Result)">
+            <Parameter Name="Latitud" Mode="In" Type="String" />
+            <Parameter Name="Longitud" Mode="In" Type="String" />
+            <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarNegocios" ReturnType="Collection(db.ConsultarNegocios_Result)">
+            <Parameter Name="Latitud" Mode="In" Type="String" />
+            <Parameter Name="Longitud" Mode="In" Type="String" />
+            <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+            <Parameter Name="Giro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarDirectorio" ReturnType="Collection(db.InsertarDirectorio_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="llave" Mode="In" Type="String" />
+            <Parameter Name="clave" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="idSubCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="idGiro" Mode="In" Type="Int32" />
+            <Parameter Name="latitud" Mode="In" Type="String" />
+            <Parameter Name="longitud" Mode="In" Type="String" />
+            <Parameter Name="rutaFoto" Mode="In" Type="String" />
+            <Parameter Name="urlFoto" Mode="In" Type="String" />
+            <Parameter Name="UrlVideo" Mode="In" Type="String" />
+            <Parameter Name="paginaWeb" Mode="In" Type="String" />
+            <Parameter Name="facebook" Mode="In" Type="String" />
+            <Parameter Name="youTube" Mode="In" Type="String" />
+            <Parameter Name="otraRedSocial" Mode="In" Type="String" />
+            <Parameter Name="idSuscriptor" Mode="In" Type="Int32" />
+            <Parameter Name="fechaEstatus" Mode="In" Type="String" />
+            <Parameter Name="estatus" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <EntitySet Name="FTAvanzarActividad" EntityType="db.FTAvanzarActividad" />
+          <FunctionImport Name="AvanzarActividad" ReturnType="Collection(db.AvanzarActividad_Result)">
+            <Parameter Name="ClaveFlujo" Mode="In" Type="String" />
+            <Parameter Name="Identificador" Mode="In" Type="String" />
+            <Parameter Name="IdAccion" Mode="In" Type="String" />
+            <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+            <Parameter Name="ClavEstatus" Mode="In" Type="String" />
+            <Parameter Name="Parametros" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Usuario" EntityType="db.Usuario" />
+          <FunctionImport Name="VerVariablesInstancia" ReturnType="Collection(db.VerVariablesInstancia_Result)">
+          <Parameter Name="IdInstancia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CalcularComisionLineaIV" IsComposable="true" ReturnType="Collection(db.CalcularComisionLineaIV_Result)">
+            <Parameter Name="saldoSubcuenta" Mode="In" Type="Int32" />
+            <Parameter Name="importeOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="porcentajeObra" Mode="In" Type="Double" />
+            <Parameter Name="porcentajeEfectivo" Mode="In" Type="Double" />
+            <Parameter Name="operacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerCalcularComisionLineaIV" ReturnType="Collection(db.VerCalcularComisionLineaIV_Result)">
+            <Parameter Name="saldoSubcuenta" Mode="In" Type="Int32" />
+            <Parameter Name="importeOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="porcentajeObra" Mode="In" Type="Double" />
+            <Parameter Name="porcentajeEfectivo" Mode="In" Type="Double" />
+            <Parameter Name="operacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerInfoInstancia" ReturnType="Collection(db.VerInfoInstancia_Result)">
+          <Parameter Name="IdInstancia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstatusTarea" ReturnType="Collection(db.VerEstatusTarea_Result)">
+          <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasDetalleFlujoTrabajoPorTarea" ReturnType="Collection(db.VerEstadisticasDetalleFlujoTrabajoPorTarea_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasFlujoTrabajoPorTarea" ReturnType="Collection(db.VerEstadisticasFlujoTrabajoPorTarea_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasDetalleFlujoTrabajoPorEstatus_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasFlujoPorVariable" ReturnType="Collection(db.VerEstadisticasFlujoPorVariable_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerlujoTrabajoPorTareaDetalle" ReturnType="Collection(db.VerlujoTrabajoPorTareaDetalle_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Documento" EntityType="db.Documento" />
+          <EntitySet Name="FlujoTrabajoDocumento" EntityType="db.FlujoTrabajoDocumento" />
+          <FunctionImport Name="VerDashBoard" ReturnType="Collection(db.VerDashBoard_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarDocumentosFlujoTrabajo" ReturnType="Collection(db.ConsultarDocumentosFlujoTrabajo_Result)">
+          <Parameter Name="Ideferencia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerProductividadVencidas" ReturnType="Collection(db.VerProductividadVencidas_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerProductividadVencidasdDetalle" ReturnType="Collection(db.VerProductividadVencidasdDetalle_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasFlujoPorVista" ReturnType="Collection(db.VerEstadisticasFlujoPorVista_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerEstadisticasFlujoPorVistaDetallePorFiltro" ReturnType="Collection(db.VerEstadisticasFlujoPorVistaDetallePorFiltro_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarServiciosPorCliente" ReturnType="Collection(db.ConsultarServiciosPorCliente_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="filtro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Cliente" EntityType="db.Cliente" />
+          <EntitySet Name="Configuracion" EntityType="db.Configuracion" />
+          <EntitySet Name="CuentaUsuario" EntityType="db.CuentaUsuario" />
+          <EntitySet Name="Grupo" EntityType="db.Grupo" />
+          <EntitySet Name="Persona" EntityType="db.Persona" />
+          <EntitySet Name="Suscripcion" EntityType="db.Suscripcion" />
+          <EntitySet Name="Perfil" EntityType="db.Perfil" />
+          <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Variables" Mode="In" Type="String" />
+            <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ConsultarHistorial_Result">
+          <Property Type="Int32" Name="Orden" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus__Instancia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="TiempoActividad" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Observacion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Seguimiento_Result">
+          <Property Type="Int32" Name="Orden" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus__Instancia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="TiempoActividad" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Observacion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasFlujoTrabajoPorEstatus_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasHistorialPorVariable_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasHistorialTrabajoPorEstatus_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasPorVariableHistorial_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasTrabajoPorEstatusHistorial_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerProductividadPorTarea_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerProductividadPorTareaDetalle_Result">
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerFlujoTrabajo_Result">
+          <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="Orden" Nullable="true" />
+          <Property Type="String" Name="FlujoBasico" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="ClaveActividad" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="String" Name="ClaveEstatus" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Perfil" Nullable="true" />
+          <Property Type="String" Name="Responsable" Nullable="true" />
+          <Property Type="Int32" Name="IdTareaSiguiente" Nullable="true" />
+          <Property Type="String" Name="Actividad_Siguiente" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ConsultarDirectorios_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="correo" Nullable="true" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="idGiro" Nullable="true" />
+          <Property Type="Int32" Name="idCategoria" Nullable="true" />
+          <Property Type="Int32" Name="idSubCategoria" Nullable="true" />
+          <Property Type="String" Name="latitud" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="longitud" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="rutaFoto" Nullable="true" />
+          <Property Type="String" Name="urlFoto" Nullable="true" />
+          <Property Type="String" Name="urlVideo" Nullable="true" />
+          <Property Type="String" Name="paginaWeb" Nullable="true" />
+          <Property Type="String" Name="facebook" Nullable="true" />
+          <Property Type="String" Name="youTube" Nullable="true" />
+          <Property Type="String" Name="otraRedSocial" Nullable="true" />
+          <Property Type="Int32" Name="idSuscriptor" Nullable="true" />
+          <Property Type="Int16" Name="estatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarEstadisticas_Result">
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Municipio" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Localidad" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Colonia" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NSE" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="I15" Nullable="true" />
+          <Property Type="Double" Name="I16" Nullable="true" />
+          <Property Type="Double" Name="I17" Nullable="true" />
+          <Property Type="Double" Name="I18" Nullable="true" />
+          <Property Type="Double" Name="I19" Nullable="true" />
+          <Property Type="Double" Name="I20" Nullable="true" />
+          <Property Type="Double" Name="I21" Nullable="true" />
+          <Property Type="Double" Name="I22" Nullable="true" />
+          <Property Type="Double" Name="I23" Nullable="true" />
+          <Property Type="Double" Name="I24" Nullable="true" />
+          <Property Type="Double" Name="I25" Nullable="true" />
+          <Property Type="Double" Name="I26" Nullable="true" />
+          <Property Type="Double" Name="I27" Nullable="true" />
+          <Property Type="Double" Name="I28" Nullable="true" />
+          <Property Type="Double" Name="I29" Nullable="true" />
+          <Property Type="Double" Name="I30" Nullable="true" />
+          <Property Type="Double" Name="I31" Nullable="true" />
+          <Property Type="Double" Name="I32" Nullable="true" />
+          <Property Type="Double" Name="I33" Nullable="true" />
+          <Property Type="Double" Name="I34" Nullable="true" />
+          <Property Type="Double" Name="I35" Nullable="true" />
+          <Property Type="Double" Name="I36" Nullable="true" />
+          <Property Type="Double" Name="I37" Nullable="true" />
+          <Property Type="Double" Name="I38" Nullable="true" />
+          <Property Type="Double" Name="I39" Nullable="true" />
+          <Property Type="Double" Name="I40" Nullable="true" />
+          <Property Type="Double" Name="I41" Nullable="true" />
+          <Property Type="Double" Name="I42" Nullable="true" />
+          <Property Type="Double" Name="I43" Nullable="true" />
+          <Property Type="Double" Name="I44" Nullable="true" />
+          <Property Type="Double" Name="I45" Nullable="true" />
+          <Property Type="Double" Name="I46" Nullable="true" />
+          <Property Type="Double" Name="I47" Nullable="true" />
+          <Property Type="Double" Name="I48" Nullable="true" />
+          <Property Type="Double" Name="I49" Nullable="true" />
+          <Property Type="Double" Name="I50" Nullable="true" />
+          <Property Type="Double" Name="I51" Nullable="true" />
+          <Property Type="Double" Name="I52" Nullable="true" />
+          <Property Type="Double" Name="I53" Nullable="true" />
+          <Property Type="Double" Name="I54" Nullable="true" />
+          <Property Type="Double" Name="I55" Nullable="true" />
+          <Property Type="Double" Name="I56" Nullable="true" />
+          <Property Type="Double" Name="I57" Nullable="true" />
+          <Property Type="Double" Name="I58" Nullable="true" />
+          <Property Type="Double" Name="I59" Nullable="true" />
+          <Property Type="Double" Name="I60" Nullable="true" />
+          <Property Type="Double" Name="I61" Nullable="true" />
+          <Property Type="Double" Name="I62" Nullable="true" />
+          <Property Type="Double" Name="I63" Nullable="true" />
+          <Property Type="Double" Name="I64" Nullable="true" />
+          <Property Type="Double" Name="I65" Nullable="true" />
+          <Property Type="Double" Name="I66" Nullable="true" />
+          <Property Type="Double" Name="I67" Nullable="true" />
+          <Property Type="Double" Name="I68" Nullable="true" />
+          <Property Type="Double" Name="I69" Nullable="true" />
+          <Property Type="Double" Name="I70" Nullable="true" />
+          <Property Type="Double" Name="I71" Nullable="true" />
+          <Property Type="Double" Name="I72" Nullable="true" />
+          <Property Type="Double" Name="I73" Nullable="true" />
+          <Property Type="Double" Name="I74" Nullable="true" />
+          <Property Type="Double" Name="I75" Nullable="true" />
+          <Property Type="Double" Name="I76" Nullable="true" />
+          <Property Type="Double" Name="I77" Nullable="true" />
+          <Property Type="Double" Name="I78" Nullable="true" />
+          <Property Type="Double" Name="I79" Nullable="true" />
+          <Property Type="Double" Name="I80" Nullable="true" />
+          <Property Type="Double" Name="I81" Nullable="true" />
+          <Property Type="Double" Name="I82" Nullable="true" />
+          <Property Type="Double" Name="I83" Nullable="true" />
+          <Property Type="Double" Name="I84" Nullable="true" />
+          <Property Type="Double" Name="I85" Nullable="true" />
+          <Property Type="Double" Name="I86" Nullable="true" />
+          <Property Type="Double" Name="I87" Nullable="true" />
+          <Property Type="Double" Name="I88" Nullable="true" />
+          <Property Type="Double" Name="I89" Nullable="true" />
+          <Property Type="Double" Name="I90" Nullable="true" />
+          <Property Type="Double" Name="I91" Nullable="true" />
+          <Property Type="Double" Name="I92" Nullable="true" />
+          <Property Type="Double" Name="I93" Nullable="true" />
+          <Property Type="Double" Name="I94" Nullable="true" />
+          <Property Type="Double" Name="I95" Nullable="true" />
+          <Property Type="Double" Name="I96" Nullable="true" />
+          <Property Type="Double" Name="I97" Nullable="true" />
+          <Property Type="Double" Name="I98" Nullable="true" />
+          <Property Type="Double" Name="I99" Nullable="true" />
+          <Property Type="Double" Name="I100" Nullable="true" />
+          <Property Type="Double" Name="I101" Nullable="true" />
+          <Property Type="Double" Name="I102" Nullable="true" />
+          <Property Type="Double" Name="I103" Nullable="true" />
+          <Property Type="Double" Name="I104" Nullable="true" />
+          <Property Type="Double" Name="I105" Nullable="true" />
+          <Property Type="Double" Name="I106" Nullable="true" />
+          <Property Type="Double" Name="I107" Nullable="true" />
+          <Property Type="Double" Name="I108" Nullable="true" />
+          <Property Type="Double" Name="I109" Nullable="true" />
+          <Property Type="Double" Name="I110" Nullable="true" />
+          <Property Type="Double" Name="I111" Nullable="true" />
+          <Property Type="Double" Name="I112" Nullable="true" />
+          <Property Type="Double" Name="I113" Nullable="true" />
+          <Property Type="Double" Name="I114" Nullable="true" />
+          <Property Type="Double" Name="I115" Nullable="true" />
+          <Property Type="Double" Name="I116" Nullable="true" />
+          <Property Type="Double" Name="I117" Nullable="true" />
+          <Property Type="Double" Name="I118" Nullable="true" />
+          <Property Type="Double" Name="I119" Nullable="true" />
+          <Property Type="Double" Name="I120" Nullable="true" />
+          <Property Type="Double" Name="I121" Nullable="true" />
+          <Property Type="Double" Name="I122" Nullable="true" />
+          <Property Type="Double" Name="I123" Nullable="true" />
+          <Property Type="Double" Name="I124" Nullable="true" />
+          <Property Type="Double" Name="I125" Nullable="true" />
+          <Property Type="Double" Name="I126" Nullable="true" />
+          <Property Type="Double" Name="I127" Nullable="true" />
+          <Property Type="Double" Name="I128" Nullable="true" />
+          <Property Type="Double" Name="I129" Nullable="true" />
+          <Property Type="Double" Name="I130" Nullable="true" />
+          <Property Type="Double" Name="I131" Nullable="true" />
+          <Property Type="Double" Name="I132" Nullable="true" />
+          <Property Type="Double" Name="I133" Nullable="true" />
+          <Property Type="Double" Name="I134" Nullable="true" />
+          <Property Type="Double" Name="I135" Nullable="true" />
+          <Property Type="Double" Name="I136" Nullable="true" />
+          <Property Type="Double" Name="I137" Nullable="true" />
+          <Property Type="Double" Name="I138" Nullable="true" />
+          <Property Type="Double" Name="I139" Nullable="true" />
+          <Property Type="Double" Name="I140" Nullable="true" />
+          <Property Type="Double" Name="I141" Nullable="true" />
+          <Property Type="Double" Name="I142" Nullable="true" />
+          <Property Type="Double" Name="I143" Nullable="true" />
+          <Property Type="Double" Name="I144" Nullable="true" />
+          <Property Type="Double" Name="I145" Nullable="true" />
+          <Property Type="Double" Name="I146" Nullable="true" />
+          <Property Type="Double" Name="I147" Nullable="true" />
+          <Property Type="Double" Name="I148" Nullable="true" />
+          <Property Type="Double" Name="I149" Nullable="true" />
+          <Property Type="Double" Name="I150" Nullable="true" />
+          <Property Type="Double" Name="I151" Nullable="true" />
+          <Property Type="Double" Name="I152" Nullable="true" />
+          <Property Type="Double" Name="I153" Nullable="true" />
+          <Property Type="Double" Name="I154" Nullable="true" />
+          <Property Type="Double" Name="I155" Nullable="true" />
+          <Property Type="Double" Name="I156" Nullable="true" />
+          <Property Type="Double" Name="I157" Nullable="true" />
+          <Property Type="Double" Name="I158" Nullable="true" />
+          <Property Type="Double" Name="I159" Nullable="true" />
+          <Property Type="Double" Name="I160" Nullable="true" />
+          <Property Type="Double" Name="I161" Nullable="true" />
+          <Property Type="Double" Name="I162" Nullable="true" />
+          <Property Type="Double" Name="I163" Nullable="true" />
+          <Property Type="Double" Name="I164" Nullable="true" />
+          <Property Type="Double" Name="I165" Nullable="true" />
+          <Property Type="Double" Name="I166" Nullable="true" />
+          <Property Type="Double" Name="I167" Nullable="true" />
+          <Property Type="Double" Name="I168" Nullable="true" />
+          <Property Type="Double" Name="I169" Nullable="true" />
+          <Property Type="Double" Name="I170" Nullable="true" />
+          <Property Type="Double" Name="I171" Nullable="true" />
+          <Property Type="Double" Name="I172" Nullable="true" />
+          <Property Type="Double" Name="I173" Nullable="true" />
+          <Property Type="Double" Name="I174" Nullable="true" />
+          <Property Type="Double" Name="I175" Nullable="true" />
+          <Property Type="Double" Name="I176" Nullable="true" />
+          <Property Type="Double" Name="I177" Nullable="true" />
+          <Property Type="Double" Name="I178" Nullable="true" />
+          <Property Type="Double" Name="I179" Nullable="true" />
+          <Property Type="Double" Name="I180" Nullable="true" />
+          <Property Type="Double" Name="I181" Nullable="true" />
+          <Property Type="Double" Name="I182" Nullable="true" />
+          <Property Type="Double" Name="I183" Nullable="true" />
+          <Property Type="Double" Name="I184" Nullable="true" />
+          <Property Type="Double" Name="I185" Nullable="true" />
+          <Property Type="Double" Name="I186" Nullable="true" />
+          <Property Type="Double" Name="I187" Nullable="true" />
+          <Property Type="Double" Name="I188" Nullable="true" />
+          <Property Type="Double" Name="I189" Nullable="true" />
+          <Property Type="Double" Name="I190" Nullable="true" />
+          <Property Type="Double" Name="I191" Nullable="true" />
+          <Property Type="Double" Name="I192" Nullable="true" />
+          <Property Type="Double" Name="I193" Nullable="true" />
+          <Property Type="Double" Name="I194" Nullable="true" />
+          <Property Type="Double" Name="I195" Nullable="true" />
+          <Property Type="Double" Name="I196" Nullable="true" />
+          <Property Type="Double" Name="I197" Nullable="true" />
+          <Property Type="Double" Name="I198" Nullable="true" />
+          <Property Type="Double" Name="I199" Nullable="true" />
+          <Property Type="Double" Name="I200" Nullable="true" />
+          <Property Type="Double" Name="I201" Nullable="true" />
+          <Property Type="Double" Name="I202" Nullable="true" />
+          <Property Type="Double" Name="I203" Nullable="true" />
+          <Property Type="Double" Name="I204" Nullable="true" />
+          <Property Type="Double" Name="I205" Nullable="true" />
+          <Property Type="Double" Name="I206" Nullable="true" />
+          <Property Type="Double" Name="I207" Nullable="true" />
+          <Property Type="Double" Name="I208" Nullable="true" />
+          <Property Type="Double" Name="I209" Nullable="true" />
+          <Property Type="Double" Name="I559" Nullable="true" />
+          <Property Type="Double" Name="I560" Nullable="true" />
+          <Property Type="Double" Name="I561" Nullable="true" />
+          <Property Type="Double" Name="I562" Nullable="true" />
+          <Property Type="Double" Name="I563" Nullable="true" />
+          <Property Type="Double" Name="I564" Nullable="true" />
+          <Property Type="Double" Name="I565" Nullable="true" />
+          <Property Type="Double" Name="I566" Nullable="true" />
+          <Property Type="Double" Name="I567" Nullable="true" />
+          <Property Type="Double" Name="I568" Nullable="true" />
+          <Property Type="Double" Name="I569" Nullable="true" />
+          <Property Type="Double" Name="I570" Nullable="true" />
+          <Property Type="Double" Name="I571" Nullable="true" />
+          <Property Type="Double" Name="I572" Nullable="true" />
+          <Property Type="Double" Name="I573" Nullable="true" />
+          <Property Type="Double" Name="I574" Nullable="true" />
+          <Property Type="Double" Name="I575" Nullable="true" />
+          <Property Type="Double" Name="I576" Nullable="true" />
+          <Property Type="Double" Name="I577" Nullable="true" />
+          <Property Type="Double" Name="I578" Nullable="true" />
+          <Property Type="Double" Name="I579" Nullable="true" />
+          <Property Type="Double" Name="I580" Nullable="true" />
+          <Property Type="Double" Name="I581" Nullable="true" />
+          <Property Type="Double" Name="I582" Nullable="true" />
+          <Property Type="Double" Name="I583" Nullable="true" />
+          <Property Type="Double" Name="I584" Nullable="true" />
+          <Property Type="Double" Name="I585" Nullable="true" />
+          <Property Type="Double" Name="I586" Nullable="true" />
+          <Property Type="Double" Name="I587" Nullable="true" />
+          <Property Type="Double" Name="I588" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarNegocios_Result">
+          <Property Type="Decimal" Name="Id" Nullable="true" Precision="11" Scale="0" />
+          <Property Type="String" Name="IdGiro" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="Giro" Nullable="false" />
+          <Property Type="String" Name="Pers_Ocup" Nullable="true" MaxLength="18" />
+          <Property Type="Decimal" Name="latitud" Nullable="true" Precision="31" Scale="15" />
+          <Property Type="Decimal" Name="longitud" Nullable="true" Precision="31" Scale="15" />
+        </ComplexType>
+        <ComplexType Name="InsertarDirectorio_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="correo" Nullable="true" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="idGiro" Nullable="true" />
+          <Property Type="Int32" Name="idCategoria" Nullable="true" />
+          <Property Type="Int32" Name="idSubCategoria" Nullable="true" />
+          <Property Type="String" Name="latitud" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="longitud" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="rutaFoto" Nullable="true" />
+          <Property Type="String" Name="urlFoto" Nullable="true" />
+          <Property Type="String" Name="urlVideo" Nullable="true" />
+          <Property Type="String" Name="paginaWeb" Nullable="true" />
+          <Property Type="String" Name="facebook" Nullable="true" />
+          <Property Type="String" Name="youTube" Nullable="true" />
+          <Property Type="String" Name="otraRedSocial" Nullable="true" />
+          <Property Type="Int32" Name="idSuscriptor" Nullable="true" />
+          <Property Type="Int16" Name="estatus" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="FTAvanzarActividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="identificador" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idTarea" Type="Int32" />
+          <Property Name="claveEstatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="parametros" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="variables" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="AvanzarActividad_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="idAccion" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="String" Name="clavEstatus" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="parametros" Nullable="true" />
+          <Property Type="String" Name="variables" Nullable="true" />
+          <Property Type="String" Name="llave" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="perfiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="grupos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idEstacionTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idIdioma" Type="Int32" />
+          <Property Name="sesiones" Type="Int32" />
+          <Property Name="intentos" Type="Int32" />
+          <Property Name="expira" Type="Int16" />
+          <Property Name="fechaVigencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuarioSuperior" Type="Int32" />
+          <Property Name="idSuscriptor" Type="Int32" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <ComplexType Name="VerVariablesInstancia_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Variable" Nullable="true" />
+          <Property Type="String" Name="Valor" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CalcularComisionLineaIV_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="concepto" Nullable="true" />
+          <Property Type="String" Name="comision" Nullable="true" />
+          <Property Type="Double" Name="importe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerCalcularComisionLineaIV_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="concepto" Nullable="true" />
+          <Property Type="String" Name="comision" Nullable="true" />
+          <Property Type="Double" Name="importe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerInfoInstancia_Result">
+          <Property Type="Int32" Name="IdInstancia" Nullable="false" />
+          <Property Type="Int32" Name="IdFlujoTrabajo" Nullable="true" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Clasificacion" Nullable="true" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int32" Name="Numero" Nullable="true" />
+          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Variables" Nullable="true" />
+          <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IdPerfil" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IdEstatusTarea" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="Activo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstatusTarea_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="false" />
+          <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasDetalleFlujoTrabajoPorTarea_Result">
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasFlujoTrabajoPorTarea_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="Importe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus_Result">
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasFlujoPorVariable_Result">
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="Importe" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+          <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+          <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerlujoTrabajoPorTareaDetalle_Result">
+          <Property Type="Int32" Name="IdInstancia" Nullable="false" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="false" />
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="Cuenta" Nullable="true" />
+          <Property Type="Int32" Name="Importe" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="orden" Type="Int32" />
+          <Property Name="idActividad" Type="Int32" />
+          <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <EntityType Name="FlujoTrabajoDocumento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDocumento" Type="Int32" />
+          <Property Name="idReferencia" Type="Int32" />
+          <Property Name="idActividad" Type="Int32" />
+          <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ruta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fechaEstatus" Type="DateTime" Precision="0" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <ComplexType Name="VerDashBoard_Result">
+          <Property Type="Int32" Name="idInstancia" Nullable="false" />
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="Int32" Name="idActividad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="genero" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="edad" Nullable="true" />
+          <Property Type="String" Name="fechaTramite" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+          <Property Type="Int32" Name="idPersona" Nullable="false" />
+          <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="correo" Nullable="true" />
+          <Property Type="Int32" Name="idSocio" Nullable="true" />
+          <Property Type="String" Name="socio" Nullable="true" />
+          <Property Type="Int32" Name="idGrupo" Nullable="false" />
+          <Property Type="String" Name="grupo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarDocumentosFlujoTrabajo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="idReferencia" Nullable="true" />
+          <Property Type="Int32" Name="idDocumento" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="idActividad" Nullable="true" />
+          <Property Type="String" Name="idAccion" Nullable="true" />
+          <Property Type="String" Name="ruta" Nullable="true" />
+          <Property Type="DateTime" Name="fechaEstatus" Nullable="true" Precision="16" />
+          <Property Type="Int16" Name="estatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerProductividadVencidas_Result">
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="Int32" Name="idActividad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="cuenta" Nullable="true" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+          <Property Type="Int32" Name="tiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="tiempoTranscurrido" Nullable="true" />
+          <Property Type="Int32" Name="productividad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerProductividadVencidasdDetalle_Result">
+          <Property Type="Int32" Name="idInstancia" Nullable="false" />
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="Int32" Name="idActividad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estatusTarea" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="cuenta" Nullable="false" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+          <Property Type="DateTime" Name="fechaInicial" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="fechaActual" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="tiempoLimite" Nullable="true" />
+          <Property Type="Int32" Name="tiempoTranscurrido" Nullable="true" />
+          <Property Type="Int32" Name="productividad" Nullable="true" />
+          <Property Type="Int32" Name="idSocio" Nullable="true" />
+          <Property Type="String" Name="socio" Nullable="true" />
+          <Property Type="Int32" Name="idGrupo" Nullable="true" />
+          <Property Type="String" Name="grupo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasFlujoPorVista_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="clave" Nullable="true" />
+          <Property Type="String" Name="concepto" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="cuenta" Nullable="true" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VerEstadisticasFlujoPorVistaDetallePorFiltro_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="concepto" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="String" Name="claveActividad" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarServiciosPorCliente_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="idInstancia" Nullable="false" />
+          <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="importe" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int32" Name="idFlujoTrabajo" Nullable="true" />
+          <Property Type="String" Name="servicio" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descricpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoCliente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" />
+          <Property Name="idSuscriptor" Type="Int32" />
+          <Property Name="idOperacion" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="curp" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoMovil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="referencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="banco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cuentaBanco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="importe" Type="Int32" />
+          <Property Name="saldo" Type="Int32" />
+          <Property Name="rutaFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrega" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Configuracion">
+          <Key>
+            <PropertyRef Name="IdConfiguracion" />
+          </Key>
+          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdAplicacion" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CuentaUsuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstacionTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuarioSuperior" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+          <Property Name="FechaVigencia" Type="DateTime" Precision="0" />
+          <Property Name="FechaCambioEstatus" Type="DateTime" Precision="0" />
+          <Property Name="Tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstatusUsuario" Type="Int16" />
+          <Property Name="Activo" Type="Byte" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="Sesiones" Type="Int32" />
+          <Property Name="Intentos" Type="Int32" />
+          <Property Name="IdIdioma" Type="Int32" />
+          <Property Name="Perfiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Grupos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Expira" Type="Boolean" />
+          <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="IdGrupo" />
+          </Key>
+          <Property Name="IdGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoPersona" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Curp" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoMovil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Saldo" Type="Decimal" Precision="14" Scale="2" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Suscripcion">
+          <Key>
+            <PropertyRef Name="IdSuscriptor" />
+          </Key>
+          <Property Name="IdSuscriptor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCorto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaContratacion" Type="DateTime" Precision="0" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="Servicios" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroUsuarios" Type="Int16" />
+          <Property Name="IdPersona" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="IdSuscriptorSuperior" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pagina" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="IdMenu" Type="Int32" />
+          <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="VerTramite_Result">
+          <Property Type="Int32" Name="idInstancia" Nullable="false" />
+          <Property Type="Int32" Name="idTarea" Nullable="true" />
+          <Property Type="Int32" Name="idActividad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="importe" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="correo" Nullable="true" />
+          <Property Type="Int32" Name="idSocio" Nullable="true" />
+          <Property Type="String" Name="socio" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idGrupo" Nullable="true" />
+          <Property Type="String" Name="grupo" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="ConsultarMisPendientes_Result">
+          <Property Type="Int32" Name="IdHistorial" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int32" Name="Numero" Nullable="true" />
+          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Int32" Name="IdInstancia" Nullable="true" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbStoreContainer" CdmEntityContainer="modelo">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="db.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idPadre" ColumnName="idPadre" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directorio">
+            <EntityTypeMapping TypeName="db.Directorio">
+              <MappingFragment StoreEntitySet="Directorio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
+                <ScalarProperty Name="idGiro" ColumnName="idGiro" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="geometria" ColumnName="geometria" />
+                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+                <ScalarProperty Name="urlVideo" ColumnName="urlVideo" />
+                <ScalarProperty Name="paginaWeb" ColumnName="paginaWeb" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="youTube" ColumnName="youTube" />
+                <ScalarProperty Name="otraRedSocial" ColumnName="otraRedSocial" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NivelRed">
+            <EntityTypeMapping TypeName="db.NivelRed">
+              <MappingFragment StoreEntitySet="NivelRed">
+                <ScalarProperty Name="importes" ColumnName="importes" />
+                <ScalarProperty Name="operaciones" ColumnName="operaciones" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="socios" ColumnName="socios" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarHistorial" FunctionName="db.Store.ConsultarHistorial">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarHistorial_Result">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus__Instancia" ColumnName="Estatus  Instancia" />
+                <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaTernimacion" ColumnName="FechaTernimacion" />
+                <ScalarProperty Name="TiempoActividad" ColumnName="TiempoActividad" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Seguimiento" FunctionName="db.Store.Seguimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.Seguimiento_Result">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus__Instancia" ColumnName="Estatus  Instancia" />
+                <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaTernimacion" ColumnName="FechaTernimacion" />
+                <ScalarProperty Name="TiempoActividad" ColumnName="TiempoActividad" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasFlujoTrabajoPorEstatus" FunctionName="db.Store.VerEstadisticasFlujoTrabajoPorEstatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasFlujoTrabajoPorEstatus_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasPorVariableHistorial" FunctionName="db.Store.VerEstadisticasPorVariableHistorial">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasPorVariableHistorial_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasTrabajoPorEstatusHistorial" FunctionName="db.Store.VerEstadisticasTrabajoPorEstatusHistorial">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasTrabajoPorEstatusHistorial_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerProductividadPorTareaDetalle" FunctionName="db.Store.VerProductividadPorTareaDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerProductividadPorTareaDetalle_Result">
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerFlujoTrabajo" FunctionName="db.Store.VerFlujoTrabajo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerFlujoTrabajo_Result">
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="FlujoBasico" ColumnName="FlujoBasico" />
+                <ScalarProperty Name="ClaveActividad" ColumnName="ClaveActividad" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ClaveEstatus" ColumnName="ClaveEstatus" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="IdTareaSiguiente" ColumnName="IdTareaSiguiente" />
+                <ScalarProperty Name="Actividad_Siguiente" ColumnName="Actividad Siguiente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarDirectorio" FunctionName="db.Store.ActualizarDirectorio" />
+          <FunctionImportMapping FunctionImportName="ConsultarDirectorios" FunctionName="db.Store.ConsultarDirectorios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarDirectorios_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idGiro" ColumnName="idGiro" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+                <ScalarProperty Name="urlVideo" ColumnName="urlVideo" />
+                <ScalarProperty Name="paginaWeb" ColumnName="paginaWeb" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="youTube" ColumnName="youTube" />
+                <ScalarProperty Name="otraRedSocial" ColumnName="otraRedSocial" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarEstadisticas" FunctionName="db.Store.ConsultarEstadisticas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarEstadisticas_Result">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="NSE" ColumnName="NSE" />
+                <ScalarProperty Name="I15" ColumnName="I15" />
+                <ScalarProperty Name="I16" ColumnName="I16" />
+                <ScalarProperty Name="I17" ColumnName="I17" />
+                <ScalarProperty Name="I18" ColumnName="I18" />
+                <ScalarProperty Name="I19" ColumnName="I19" />
+                <ScalarProperty Name="I20" ColumnName="I20" />
+                <ScalarProperty Name="I21" ColumnName="I21" />
+                <ScalarProperty Name="I22" ColumnName="I22" />
+                <ScalarProperty Name="I23" ColumnName="I23" />
+                <ScalarProperty Name="I24" ColumnName="I24" />
+                <ScalarProperty Name="I25" ColumnName="I25" />
+                <ScalarProperty Name="I26" ColumnName="I26" />
+                <ScalarProperty Name="I27" ColumnName="I27" />
+                <ScalarProperty Name="I28" ColumnName="I28" />
+                <ScalarProperty Name="I29" ColumnName="I29" />
+                <ScalarProperty Name="I30" ColumnName="I30" />
+                <ScalarProperty Name="I31" ColumnName="I31" />
+                <ScalarProperty Name="I32" ColumnName="I32" />
+                <ScalarProperty Name="I33" ColumnName="I33" />
+                <ScalarProperty Name="I34" ColumnName="I34" />
+                <ScalarProperty Name="I35" ColumnName="I35" />
+                <ScalarProperty Name="I36" ColumnName="I36" />
+                <ScalarProperty Name="I37" ColumnName="I37" />
+                <ScalarProperty Name="I38" ColumnName="I38" />
+                <ScalarProperty Name="I39" ColumnName="I39" />
+                <ScalarProperty Name="I40" ColumnName="I40" />
+                <ScalarProperty Name="I41" ColumnName="I41" />
+                <ScalarProperty Name="I42" ColumnName="I42" />
+                <ScalarProperty Name="I43" ColumnName="I43" />
+                <ScalarProperty Name="I44" ColumnName="I44" />
+                <ScalarProperty Name="I45" ColumnName="I45" />
+                <ScalarProperty Name="I46" ColumnName="I46" />
+                <ScalarProperty Name="I47" ColumnName="I47" />
+                <ScalarProperty Name="I48" ColumnName="I48" />
+                <ScalarProperty Name="I49" ColumnName="I49" />
+                <ScalarProperty Name="I50" ColumnName="I50" />
+                <ScalarProperty Name="I51" ColumnName="I51" />
+                <ScalarProperty Name="I52" ColumnName="I52" />
+                <ScalarProperty Name="I53" ColumnName="I53" />
+                <ScalarProperty Name="I54" ColumnName="I54" />
+                <ScalarProperty Name="I55" ColumnName="I55" />
+                <ScalarProperty Name="I56" ColumnName="I56" />
+                <ScalarProperty Name="I57" ColumnName="I57" />
+                <ScalarProperty Name="I58" ColumnName="I58" />
+                <ScalarProperty Name="I59" ColumnName="I59" />
+                <ScalarProperty Name="I60" ColumnName="I60" />
+                <ScalarProperty Name="I61" ColumnName="I61" />
+                <ScalarProperty Name="I62" ColumnName="I62" />
+                <ScalarProperty Name="I63" ColumnName="I63" />
+                <ScalarProperty Name="I64" ColumnName="I64" />
+                <ScalarProperty Name="I65" ColumnName="I65" />
+                <ScalarProperty Name="I66" ColumnName="I66" />
+                <ScalarProperty Name="I67" ColumnName="I67" />
+                <ScalarProperty Name="I68" ColumnName="I68" />
+                <ScalarProperty Name="I69" ColumnName="I69" />
+                <ScalarProperty Name="I70" ColumnName="I70" />
+                <ScalarProperty Name="I71" ColumnName="I71" />
+                <ScalarProperty Name="I72" ColumnName="I72" />
+                <ScalarProperty Name="I73" ColumnName="I73" />
+                <ScalarProperty Name="I74" ColumnName="I74" />
+                <ScalarProperty Name="I75" ColumnName="I75" />
+                <ScalarProperty Name="I76" ColumnName="I76" />
+                <ScalarProperty Name="I77" ColumnName="I77" />
+                <ScalarProperty Name="I78" ColumnName="I78" />
+                <ScalarProperty Name="I79" ColumnName="I79" />
+                <ScalarProperty Name="I80" ColumnName="I80" />
+                <ScalarProperty Name="I81" ColumnName="I81" />
+                <ScalarProperty Name="I82" ColumnName="I82" />
+                <ScalarProperty Name="I83" ColumnName="I83" />
+                <ScalarProperty Name="I84" ColumnName="I84" />
+                <ScalarProperty Name="I85" ColumnName="I85" />
+                <ScalarProperty Name="I86" ColumnName="I86" />
+                <ScalarProperty Name="I87" ColumnName="I87" />
+                <ScalarProperty Name="I88" ColumnName="I88" />
+                <ScalarProperty Name="I89" ColumnName="I89" />
+                <ScalarProperty Name="I90" ColumnName="I90" />
+                <ScalarProperty Name="I91" ColumnName="I91" />
+                <ScalarProperty Name="I92" ColumnName="I92" />
+                <ScalarProperty Name="I93" ColumnName="I93" />
+                <ScalarProperty Name="I94" ColumnName="I94" />
+                <ScalarProperty Name="I95" ColumnName="I95" />
+                <ScalarProperty Name="I96" ColumnName="I96" />
+                <ScalarProperty Name="I97" ColumnName="I97" />
+                <ScalarProperty Name="I98" ColumnName="I98" />
+                <ScalarProperty Name="I99" ColumnName="I99" />
+                <ScalarProperty Name="I100" ColumnName="I100" />
+                <ScalarProperty Name="I101" ColumnName="I101" />
+                <ScalarProperty Name="I102" ColumnName="I102" />
+                <ScalarProperty Name="I103" ColumnName="I103" />
+                <ScalarProperty Name="I104" ColumnName="I104" />
+                <ScalarProperty Name="I105" ColumnName="I105" />
+                <ScalarProperty Name="I106" ColumnName="I106" />
+                <ScalarProperty Name="I107" ColumnName="I107" />
+                <ScalarProperty Name="I108" ColumnName="I108" />
+                <ScalarProperty Name="I109" ColumnName="I109" />
+                <ScalarProperty Name="I110" ColumnName="I110" />
+                <ScalarProperty Name="I111" ColumnName="I111" />
+                <ScalarProperty Name="I112" ColumnName="I112" />
+                <ScalarProperty Name="I113" ColumnName="I113" />
+                <ScalarProperty Name="I114" ColumnName="I114" />
+                <ScalarProperty Name="I115" ColumnName="I115" />
+                <ScalarProperty Name="I116" ColumnName="I116" />
+                <ScalarProperty Name="I117" ColumnName="I117" />
+                <ScalarProperty Name="I118" ColumnName="I118" />
+                <ScalarProperty Name="I119" ColumnName="I119" />
+                <ScalarProperty Name="I120" ColumnName="I120" />
+                <ScalarProperty Name="I121" ColumnName="I121" />
+                <ScalarProperty Name="I122" ColumnName="I122" />
+                <ScalarProperty Name="I123" ColumnName="I123" />
+                <ScalarProperty Name="I124" ColumnName="I124" />
+                <ScalarProperty Name="I125" ColumnName="I125" />
+                <ScalarProperty Name="I126" ColumnName="I126" />
+                <ScalarProperty Name="I127" ColumnName="I127" />
+                <ScalarProperty Name="I128" ColumnName="I128" />
+                <ScalarProperty Name="I129" ColumnName="I129" />
+                <ScalarProperty Name="I130" ColumnName="I130" />
+                <ScalarProperty Name="I131" ColumnName="I131" />
+                <ScalarProperty Name="I132" ColumnName="I132" />
+                <ScalarProperty Name="I133" ColumnName="I133" />
+                <ScalarProperty Name="I134" ColumnName="I134" />
+                <ScalarProperty Name="I135" ColumnName="I135" />
+                <ScalarProperty Name="I136" ColumnName="I136" />
+                <ScalarProperty Name="I137" ColumnName="I137" />
+                <ScalarProperty Name="I138" ColumnName="I138" />
+                <ScalarProperty Name="I139" ColumnName="I139" />
+                <ScalarProperty Name="I140" ColumnName="I140" />
+                <ScalarProperty Name="I141" ColumnName="I141" />
+                <ScalarProperty Name="I142" ColumnName="I142" />
+                <ScalarProperty Name="I143" ColumnName="I143" />
+                <ScalarProperty Name="I144" ColumnName="I144" />
+                <ScalarProperty Name="I145" ColumnName="I145" />
+                <ScalarProperty Name="I146" ColumnName="I146" />
+                <ScalarProperty Name="I147" ColumnName="I147" />
+                <ScalarProperty Name="I148" ColumnName="I148" />
+                <ScalarProperty Name="I149" ColumnName="I149" />
+                <ScalarProperty Name="I150" ColumnName="I150" />
+                <ScalarProperty Name="I151" ColumnName="I151" />
+                <ScalarProperty Name="I152" ColumnName="I152" />
+                <ScalarProperty Name="I153" ColumnName="I153" />
+                <ScalarProperty Name="I154" ColumnName="I154" />
+                <ScalarProperty Name="I155" ColumnName="I155" />
+                <ScalarProperty Name="I156" ColumnName="I156" />
+                <ScalarProperty Name="I157" ColumnName="I157" />
+                <ScalarProperty Name="I158" ColumnName="I158" />
+                <ScalarProperty Name="I159" ColumnName="I159" />
+                <ScalarProperty Name="I160" ColumnName="I160" />
+                <ScalarProperty Name="I161" ColumnName="I161" />
+                <ScalarProperty Name="I162" ColumnName="I162" />
+                <ScalarProperty Name="I163" ColumnName="I163" />
+                <ScalarProperty Name="I164" ColumnName="I164" />
+                <ScalarProperty Name="I165" ColumnName="I165" />
+                <ScalarProperty Name="I166" ColumnName="I166" />
+                <ScalarProperty Name="I167" ColumnName="I167" />
+                <ScalarProperty Name="I168" ColumnName="I168" />
+                <ScalarProperty Name="I169" ColumnName="I169" />
+                <ScalarProperty Name="I170" ColumnName="I170" />
+                <ScalarProperty Name="I171" ColumnName="I171" />
+                <ScalarProperty Name="I172" ColumnName="I172" />
+                <ScalarProperty Name="I173" ColumnName="I173" />
+                <ScalarProperty Name="I174" ColumnName="I174" />
+                <ScalarProperty Name="I175" ColumnName="I175" />
+                <ScalarProperty Name="I176" ColumnName="I176" />
+                <ScalarProperty Name="I177" ColumnName="I177" />
+                <ScalarProperty Name="I178" ColumnName="I178" />
+                <ScalarProperty Name="I179" ColumnName="I179" />
+                <ScalarProperty Name="I180" ColumnName="I180" />
+                <ScalarProperty Name="I181" ColumnName="I181" />
+                <ScalarProperty Name="I182" ColumnName="I182" />
+                <ScalarProperty Name="I183" ColumnName="I183" />
+                <ScalarProperty Name="I184" ColumnName="I184" />
+                <ScalarProperty Name="I185" ColumnName="I185" />
+                <ScalarProperty Name="I186" ColumnName="I186" />
+                <ScalarProperty Name="I187" ColumnName="I187" />
+                <ScalarProperty Name="I188" ColumnName="I188" />
+                <ScalarProperty Name="I189" ColumnName="I189" />
+                <ScalarProperty Name="I190" ColumnName="I190" />
+                <ScalarProperty Name="I191" ColumnName="I191" />
+                <ScalarProperty Name="I192" ColumnName="I192" />
+                <ScalarProperty Name="I193" ColumnName="I193" />
+                <ScalarProperty Name="I194" ColumnName="I194" />
+                <ScalarProperty Name="I195" ColumnName="I195" />
+                <ScalarProperty Name="I196" ColumnName="I196" />
+                <ScalarProperty Name="I197" ColumnName="I197" />
+                <ScalarProperty Name="I198" ColumnName="I198" />
+                <ScalarProperty Name="I199" ColumnName="I199" />
+                <ScalarProperty Name="I200" ColumnName="I200" />
+                <ScalarProperty Name="I201" ColumnName="I201" />
+                <ScalarProperty Name="I202" ColumnName="I202" />
+                <ScalarProperty Name="I203" ColumnName="I203" />
+                <ScalarProperty Name="I204" ColumnName="I204" />
+                <ScalarProperty Name="I205" ColumnName="I205" />
+                <ScalarProperty Name="I206" ColumnName="I206" />
+                <ScalarProperty Name="I207" ColumnName="I207" />
+                <ScalarProperty Name="I208" ColumnName="I208" />
+                <ScalarProperty Name="I209" ColumnName="I209" />
+                <ScalarProperty Name="I559" ColumnName="I559" />
+                <ScalarProperty Name="I560" ColumnName="I560" />
+                <ScalarProperty Name="I561" ColumnName="I561" />
+                <ScalarProperty Name="I562" ColumnName="I562" />
+                <ScalarProperty Name="I563" ColumnName="I563" />
+                <ScalarProperty Name="I564" ColumnName="I564" />
+                <ScalarProperty Name="I565" ColumnName="I565" />
+                <ScalarProperty Name="I566" ColumnName="I566" />
+                <ScalarProperty Name="I567" ColumnName="I567" />
+                <ScalarProperty Name="I568" ColumnName="I568" />
+                <ScalarProperty Name="I569" ColumnName="I569" />
+                <ScalarProperty Name="I570" ColumnName="I570" />
+                <ScalarProperty Name="I571" ColumnName="I571" />
+                <ScalarProperty Name="I572" ColumnName="I572" />
+                <ScalarProperty Name="I573" ColumnName="I573" />
+                <ScalarProperty Name="I574" ColumnName="I574" />
+                <ScalarProperty Name="I575" ColumnName="I575" />
+                <ScalarProperty Name="I576" ColumnName="I576" />
+                <ScalarProperty Name="I577" ColumnName="I577" />
+                <ScalarProperty Name="I578" ColumnName="I578" />
+                <ScalarProperty Name="I579" ColumnName="I579" />
+                <ScalarProperty Name="I580" ColumnName="I580" />
+                <ScalarProperty Name="I581" ColumnName="I581" />
+                <ScalarProperty Name="I582" ColumnName="I582" />
+                <ScalarProperty Name="I583" ColumnName="I583" />
+                <ScalarProperty Name="I584" ColumnName="I584" />
+                <ScalarProperty Name="I585" ColumnName="I585" />
+                <ScalarProperty Name="I586" ColumnName="I586" />
+                <ScalarProperty Name="I587" ColumnName="I587" />
+                <ScalarProperty Name="I588" ColumnName="I588" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarNegocios" FunctionName="db.Store.ConsultarNegocios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarNegocios_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdGiro" ColumnName="IdGiro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Giro" ColumnName="Giro" />
+                <ScalarProperty Name="Pers_Ocup" ColumnName="Pers_Ocup" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertarDirectorio" FunctionName="db.Store.InsertarDirectorio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.InsertarDirectorio_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idGiro" ColumnName="idGiro" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+                <ScalarProperty Name="urlVideo" ColumnName="urlVideo" />
+                <ScalarProperty Name="paginaWeb" ColumnName="paginaWeb" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="youTube" ColumnName="youTube" />
+                <ScalarProperty Name="otraRedSocial" ColumnName="otraRedSocial" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="FTAvanzarActividad">
+            <EntityTypeMapping TypeName="db.FTAvanzarActividad">
+              <MappingFragment StoreEntitySet="FTAvanzarActividad">
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="variables" ColumnName="variables" />
+                <ScalarProperty Name="parametros" ColumnName="parametros" />
+                <ScalarProperty Name="claveEstatus" ColumnName="claveEstatus" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AvanzarActividad" FunctionName="db.Store.AvanzarActividad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.AvanzarActividad_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="clavEstatus" ColumnName="clavEstatus" />
+                <ScalarProperty Name="parametros" ColumnName="parametros" />
+                <ScalarProperty Name="variables" ColumnName="variables" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="db.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="idUsuarioSuperior" ColumnName="idUsuarioSuperior" />
+                <ScalarProperty Name="fechaVigencia" ColumnName="fechaVigencia" />
+                <ScalarProperty Name="expira" ColumnName="expira" />
+                <ScalarProperty Name="intentos" ColumnName="intentos" />
+                <ScalarProperty Name="sesiones" ColumnName="sesiones" />
+                <ScalarProperty Name="idIdioma" ColumnName="idIdioma" />
+                <ScalarProperty Name="tema" ColumnName="tema" />
+                <ScalarProperty Name="idEstacionTrabajo" ColumnName="idEstacionTrabajo" />
+                <ScalarProperty Name="privilegios" ColumnName="privilegios" />
+                <ScalarProperty Name="grupos" ColumnName="grupos" />
+                <ScalarProperty Name="perfiles" ColumnName="perfiles" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VerVariablesInstancia" FunctionName="db.Store.VerVariablesInstancia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerVariablesInstancia_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CalcularComisionLineaIV" FunctionName="db.Store.CalcularComisionLineaIV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.CalcularComisionLineaIV_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerCalcularComisionLineaIV" FunctionName="db.Store.VerCalcularComisionLineaIV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerCalcularComisionLineaIV_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerInfoInstancia" FunctionName="db.Store.VerInfoInstancia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerInfoInstancia_Result">
+                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+                <ScalarProperty Name="IdFlujoTrabajo" ColumnName="IdFlujoTrabajo" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaTernimacion" ColumnName="FechaTernimacion" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Variables" ColumnName="Variables" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="IdEstatusTarea" ColumnName="IdEstatusTarea" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstatusTarea" FunctionName="db.Store.VerEstatusTarea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstatusTarea_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasDetalleFlujoTrabajoPorTarea" FunctionName="db.Store.VerEstadisticasDetalleFlujoTrabajoPorTarea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasDetalleFlujoTrabajoPorTarea_Result">
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasFlujoTrabajoPorTarea" FunctionName="db.Store.VerEstadisticasFlujoTrabajoPorTarea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasFlujoTrabajoPorTarea_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasDetalleFlujoTrabajoPorEstatus" FunctionName="db.Store.VerEstadisticasDetalleFlujoTrabajoPorEstatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasDetalleFlujoTrabajoPorEstatus_Result">
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasFlujoPorVariable" FunctionName="db.Store.VerEstadisticasFlujoPorVariable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasFlujoPorVariable_Result">
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="TiempoMinimo" ColumnName="TiempoMinimo" />
+                <ScalarProperty Name="TiempoPromedio" ColumnName="TiempoPromedio" />
+                <ScalarProperty Name="TiempoMaximo" ColumnName="TiempoMaximo" />
+                <ScalarProperty Name="TiempoLimite" ColumnName="TiempoLimite" />
+                <ScalarProperty Name="ProductividadTiempo" ColumnName="ProductividadTiempo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerlujoTrabajoPorTareaDetalle" FunctionName="db.Store.VerlujoTrabajoPorTareaDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerlujoTrabajoPorTareaDetalle_Result">
+                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Documento">
+            <EntityTypeMapping TypeName="db.Documento">
+              <MappingFragment StoreEntitySet="Documento">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlujoTrabajoDocumento">
+            <EntityTypeMapping TypeName="db.FlujoTrabajoDocumento">
+              <MappingFragment StoreEntitySet="FlujoTrabajoDocumento">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="idReferencia" ColumnName="idReferencia" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VerDashBoard" FunctionName="db.Store.VerDashBoard">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerDashBoard_Result">
+                <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="fechaTramite" ColumnName="fechaTramite" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="socio" ColumnName="socio" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarDocumentosFlujoTrabajo" FunctionName="db.Store.ConsultarDocumentosFlujoTrabajo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarDocumentosFlujoTrabajo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idReferencia" ColumnName="idReferencia" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerProductividadVencidas" FunctionName="db.Store.VerProductividadVencidas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerProductividadVencidas_Result">
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="tiempoLimite" ColumnName="tiempoLimite" />
+                <ScalarProperty Name="tiempoTranscurrido" ColumnName="tiempoTranscurrido" />
+                <ScalarProperty Name="productividad" ColumnName="productividad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerProductividadVencidasdDetalle" FunctionName="db.Store.VerProductividadVencidasdDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerProductividadVencidasdDetalle_Result">
+                <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="estatusTarea" ColumnName="estatusTarea" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="fechaInicial" ColumnName="fechaInicial" />
+                <ScalarProperty Name="fechaActual" ColumnName="fechaActual" />
+                <ScalarProperty Name="tiempoLimite" ColumnName="tiempoLimite" />
+                <ScalarProperty Name="tiempoTranscurrido" ColumnName="tiempoTranscurrido" />
+                <ScalarProperty Name="productividad" ColumnName="productividad" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="socio" ColumnName="socio" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasFlujoPorVista" FunctionName="db.Store.VerEstadisticasFlujoPorVista">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasFlujoPorVista_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerEstadisticasFlujoPorVistaDetallePorFiltro" FunctionName="db.Store.VerEstadisticasFlujoPorVistaDetallePorFiltro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerEstadisticasFlujoPorVistaDetallePorFiltro_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="claveActividad" ColumnName="claveActividad" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarServiciosPorCliente" FunctionName="db.Store.ConsultarServiciosPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarServiciosPorCliente_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="idFlujoTrabajo" ColumnName="idFlujoTrabajo" />
+                <ScalarProperty Name="servicio" ColumnName="servicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="db.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="cuentaBanco" ColumnName="cuentaBanco" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
+                <ScalarProperty Name="descricpion" ColumnName="descricpion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuracion">
+            <EntityTypeMapping TypeName="db.Configuracion">
+              <MappingFragment StoreEntitySet="Configuracion">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdAplicacion" ColumnName="IdAplicacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentaUsuario">
+            <EntityTypeMapping TypeName="db.CuentaUsuario">
+              <MappingFragment StoreEntitySet="CuentaUsuario">
+                <ScalarProperty Name="Privilegios" ColumnName="Privilegios" />
+                <ScalarProperty Name="Expira" ColumnName="Expira" />
+                <ScalarProperty Name="Grupos" ColumnName="Grupos" />
+                <ScalarProperty Name="Perfiles" ColumnName="Perfiles" />
+                <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+                <ScalarProperty Name="Intentos" ColumnName="Intentos" />
+                <ScalarProperty Name="Sesiones" ColumnName="Sesiones" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdEstatusUsuario" ColumnName="IdEstatusUsuario" />
+                <ScalarProperty Name="Tema" ColumnName="Tema" />
+                <ScalarProperty Name="FechaCambioEstatus" ColumnName="FechaCambioEstatus" />
+                <ScalarProperty Name="FechaVigencia" ColumnName="FechaVigencia" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdUsuarioSuperior" ColumnName="IdUsuarioSuperior" />
+                <ScalarProperty Name="IdEstacionTrabajo" ColumnName="IdEstacionTrabajo" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo">
+            <EntityTypeMapping TypeName="db.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="Privilegios" ColumnName="Privilegios" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="db.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="TelefonoMovil" ColumnName="TelefonoMovil" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suscripcion">
+            <EntityTypeMapping TypeName="db.Suscripcion">
+              <MappingFragment StoreEntitySet="Suscripcion">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdSuscriptorSuperior" ColumnName="IdSuscriptorSuperior" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="NumeroUsuarios" ColumnName="NumeroUsuarios" />
+                <ScalarProperty Name="Servicios" ColumnName="Servicios" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaContratacion" ColumnName="FechaContratacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="NombreCorto" ColumnName="NombreCorto" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="db.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="Privilegios" ColumnName="Privilegios" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="Pagina" ColumnName="Pagina" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VerTramite" FunctionName="db.Store.VerTramite">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.VerTramite_Result">
+                <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="socio" ColumnName="socio" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarMisPendientes" FunctionName="db.Store.ConsultarMisPendientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarMisPendientes_Result">
+                <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus_Flujo" ColumnName="Estatus Flujo" />
+                <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

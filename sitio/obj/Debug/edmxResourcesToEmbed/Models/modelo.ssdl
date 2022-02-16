@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="llave" Type="varchar(max)" />
+    <Property Name="clave" Type="varchar(max)" />
+    <Property Name="nombre" Type="varchar(max)" />
+    <Property Name="fecha" Type="varchar" MaxLength="10" />
+    <Property Name="tipo" Type="varchar" MaxLength="1" />
+    <Property Name="idPadre" Type="int" />
+    <Property Name="idSuscriptor" Type="int" />
+    <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="llave" Type="varchar(max)" />
+    <Property Name="clave" Type="varchar(max)" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="descricpion" Type="varchar(max)" />
+    <Property Name="idTipoCliente" Type="varchar" MaxLength="1" />
+    <Property Name="idEstado" Type="int" />
+    <Property Name="idSuscriptor" Type="int" />
+    <Property Name="idOperacion" Type="int" />
+    <Property Name="idUsuario" Type="int" />
+    <Property Name="apellidoPaterno" Type="varchar" MaxLength="100" />
+    <Property Name="apellidoMaterno" Type="varchar" MaxLength="100" />
+    <Property Name="rfc" Type="varchar" MaxLength="20" />
+    <Property Name="curp" Type="varchar" MaxLength="30" />
+    <Property Name="telefono" Type="varchar" MaxLength="10" />
+    <Property Name="telefonoMovil" Type="varchar" MaxLength="10" />
+    <Property Name="correo" Type="varchar(max)" />
+    <Property Name="genero" Type="varchar" MaxLength="1" />
+    <Property Name="direccion" Type="varchar(max)" />
+    <Property Name="referencia" Type="nvarchar" MaxLength="50" />
+    <Property Name="banco" Type="varchar(max)" />
+    <Property Name="cuentaBanco" Type="varchar(max)" />
+    <Property Name="importe" Type="int" />
+    <Property Name="saldo" Type="int" />
+    <Property Name="rutaFoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="urlFoto" Type="varchar(max)" />
+    <Property Name="fechaNacimiento" Type="varchar" MaxLength="10" />
+    <Property Name="fecha" Type="varchar" MaxLength="10" />
+    <Property Name="fechaEntrega" Type="varchar" MaxLength="10" />
+    <Property Name="fechaRegistro" Type="varchar" MaxLength="10" />
+    <Property Name="idSocio" Type="int" />
+    <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Configuracion">
+    <Key>
+      <PropertyRef Name="IdConfiguracion" />
+    </Key>
+    <Property Name="IdConfiguracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="varchar" MaxLength="100" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+    <Property Name="Valor" Type="nvarchar(max)" />
+    <Property Name="Tipo" Type="varchar" MaxLength="20" />
+    <Property Name="IdAplicacion" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="CuentaUsuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cuenta" Type="varchar" MaxLength="100" />
+    <Property Name="Contrasena" Type="varchar" MaxLength="250" />
+    <Property Name="IdEstacionTrabajo" Type="varchar" MaxLength="50" />
+    <Property Name="IdUsuarioSuperior" Type="int" />
+    <Property Name="FechaRegistro" Type="smalldatetime" />
+    <Property Name="FechaVigencia" Type="smalldatetime" />
+    <Property Name="FechaCambioEstatus" Type="smalldatetime" />
+    <Property Name="Tema" Type="varchar" MaxLength="30" />
+    <Property Name="IdEstatusUsuario" Type="smallint" />
+    <Property Name="Activo" Type="tinyint" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="Sesiones" Type="int" />
+    <Property Name="Intentos" Type="int" />
+    <Property Name="IdIdioma" Type="int" />
+    <Property Name="Perfiles" Type="nvarchar(max)" />
+    <Property Name="Grupos" Type="nvarchar(max)" />
+    <Property Name="Expira" Type="bit" />
+    <Property Name="Privilegios" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Directorio">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="llave" Type="varchar(max)" />
+    <Property Name="clave" Type="varchar(max)" />
+    <Property Name="fecha" Type="varchar" MaxLength="10" />
+    <Property Name="nombre" Type="varchar(max)" />
+    <Property Name="descripcion" Type="varchar(max)" />
+    <Property Name="tipo" Type="varchar" MaxLength="1" />
+    <Property Name="direccion" Type="varchar" MaxLength="150" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" />
+    <Property Name="correo" Type="varchar(max)" />
+    <Property Name="idCategoria" Type="int" />
+    <Property Name="idSubCategoria" Type="int" />
+    <Property Name="idGiro" Type="int" />
+    <Property Name="latitud" Type="varchar" MaxLength="20" />
+    <Property Name="longitud" Type="varchar" MaxLength="20" />
+    <Property Name="geometria" Type="geometry" />
+    <Property Name="rutaFoto" Type="varchar(max)" />
+    <Property Name="urlFoto" Type="varchar(max)" />
+    <Property Name="urlVideo" Type="varchar(max)" />
+    <Property Name="paginaWeb" Type="varchar(max)" />
+    <Property Name="facebook" Type="varchar(max)" />
+    <Property Name="youTube" Type="varchar(max)" />
+    <Property Name="otraRedSocial" Type="varchar(max)" />
+    <Property Name="idSuscriptor" Type="int" />
+    <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clave" Type="nvarchar" MaxLength="100" />
+    <Property Name="llave" Type="nvarchar(max)" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="250" />
+    <Property Name="orden" Type="int" />
+    <Property Name="idActividad" Type="int" />
+    <Property Name="idAccion" Type="nvarchar(max)" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="FlujoTrabajoDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDocumento" Type="int" />
+    <Property Name="idReferencia" Type="int" />
+    <Property Name="idActividad" Type="int" />
+    <Property Name="idAccion" Type="nvarchar(max)" />
+    <Property Name="ruta" Type="nvarchar(max)" />
+    <Property Name="fechaEstatus" Type="smalldatetime" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="FTAvanzarActividad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clave" Type="nvarchar" MaxLength="100" />
+    <Property Name="identificador" Type="nvarchar" MaxLength="250" />
+    <Property Name="idAccion" Type="nvarchar(max)" />
+    <Property Name="idTarea" Type="int" />
+    <Property Name="claveEstatus" Type="nvarchar" MaxLength="250" />
+    <Property Name="parametros" Type="nvarchar(max)" />
+    <Property Name="variables" Type="nvarchar(max)" />
+    <Property Name="llave" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="IdGrupo" />
+    </Key>
+    <Property Name="IdGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="60" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="Privilegios" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="NivelRed">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="llave" Type="varchar(max)" />
+    <Property Name="clave" Type="varchar(max)" />
+    <Property Name="nombre" Type="varchar(max)" />
+    <Property Name="comision" Type="float" />
+    <Property Name="orden" Type="int" />
+    <Property Name="socios" Type="int" />
+    <Property Name="operaciones" Type="int" />
+    <Property Name="importes" Type="int" />
+    <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="IdPerfil" />
+    </Key>
+    <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Pagina" Type="varchar" MaxLength="100" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="IdMenu" Type="int" />
+    <Property Name="Privilegios" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoPersona" Type="varchar" MaxLength="1" />
+    <Property Name="RFC" Type="varchar" MaxLength="15" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="Curp" Type="varchar" MaxLength="19" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="Genero" Type="varchar" MaxLength="1" />
+    <Property Name="Correo" Type="varchar" MaxLength="150" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="TelefonoMovil" Type="varchar" MaxLength="30" />
+    <Property Name="Saldo" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="Suscripcion">
+    <Key>
+      <PropertyRef Name="IdSuscriptor" />
+    </Key>
+    <Property Name="IdSuscriptor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCorto" Type="varchar" MaxLength="50" />
+    <Property Name="Tipo" Type="varchar" MaxLength="3" />
+    <Property Name="FechaContratacion" Type="smalldatetime" />
+    <Property Name="FechaInicio" Type="smalldatetime" />
+    <Property Name="FechaVencimiento" Type="smalldatetime" />
+    <Property Name="Servicios" Type="varchar" MaxLength="250" />
+    <Property Name="NumeroUsuarios" Type="smallint" />
+    <Property Name="IdPersona" Type="int" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="IdSuscriptorSuperior" Type="int" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="llave" Type="varchar(max)" />
+    <Property Name="clave" Type="varchar(max)" />
+    <Property Name="nombre" Type="varchar(max)" />
+    <Property Name="fecha" Type="varchar" MaxLength="10" />
+    <Property Name="cuenta" Type="varchar" MaxLength="100" />
+    <Property Name="contrasena" Type="varchar" MaxLength="50" />
+    <Property Name="perfiles" Type="nvarchar(max)" />
+    <Property Name="grupos" Type="nvarchar(max)" />
+    <Property Name="privilegios" Type="nvarchar(max)" />
+    <Property Name="idEstacionTrabajo" Type="varchar" MaxLength="50" />
+    <Property Name="tema" Type="varchar" MaxLength="30" />
+    <Property Name="idIdioma" Type="int" />
+    <Property Name="sesiones" Type="int" />
+    <Property Name="intentos" Type="int" />
+    <Property Name="expira" Type="smallint" />
+    <Property Name="fechaVigencia" Type="varchar" MaxLength="10" />
+    <Property Name="idUsuarioSuperior" Type="int" />
+    <Property Name="idSuscriptor" Type="int" />
+    <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
+    <Property Name="estatus" Type="smallint" />
+  </EntityType>
+  <Function Name="ActualizarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="llave" Type="varchar(max)" Mode="In" />
+    <Parameter Name="clave" Type="varchar(max)" Mode="In" />
+    <Parameter Name="fecha" Type="varchar" Mode="In" />
+    <Parameter Name="nombre" Type="varchar(max)" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar(max)" Mode="In" />
+    <Parameter Name="tipo" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="idCategoria" Type="int" Mode="In" />
+    <Parameter Name="idSubCategoria" Type="int" Mode="In" />
+    <Parameter Name="idGiro" Type="int" Mode="In" />
+    <Parameter Name="latitud" Type="varchar" Mode="In" />
+    <Parameter Name="longitud" Type="varchar" Mode="In" />
+    <Parameter Name="rutaFoto" Type="varchar(max)" Mode="In" />
+    <Parameter Name="urlFoto" Type="varchar(max)" Mode="In" />
+    <Parameter Name="urlVideo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="paginaWeb" Type="varchar(max)" Mode="In" />
+    <Parameter Name="facebook" Type="varchar(max)" Mode="In" />
+    <Parameter Name="youTube" Type="varchar(max)" Mode="In" />
+    <Parameter Name="otraRedSocial" Type="varchar(max)" Mode="In" />
+    <Parameter Name="idSuscriptor" Type="int" Mode="In" />
+    <Parameter Name="fechaEstatus" Type="varchar" Mode="In" />
+    <Parameter Name="estatus" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="AvanzarActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClaveFlujo" Type="nvarchar" Mode="In" />
+    <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdAccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdTarea" Type="int" Mode="In" />
+    <Parameter Name="ClavEstatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="Parametros" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="CalcularComisionLineaIV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="saldoSubcuenta" Type="int" Mode="In" />
+    <Parameter Name="importeOperacion" Type="int" Mode="In" />
+    <Parameter Name="porcentajeObra" Type="float" Mode="In" />
+    <Parameter Name="porcentajeEfectivo" Type="float" Mode="In" />
+    <Parameter Name="operacion" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" />
+          <Property Name="concepto" Type="nvarchar(max)" />
+          <Property Name="comision" Type="nvarchar(max)" />
+          <Property Name="importe" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ConsultarDirectorios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="RadioMetros" Type="float" Mode="In" />
+    <Parameter Name="Giro" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Categoria" Type="varchar(max)" Mode="In" />
+    <Parameter Name="SubCategoria" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="ConsultarDocumentosFlujoTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ideferencia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ConsultarEstadisticas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="RadioMetros" Type="float" Mode="In" />
+  </Function>
+  <Function Name="ConsultarHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ConsultarMisPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ConsultarNegocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Latitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Longitud" Type="varchar(max)" Mode="In" />
+    <Parameter Name="RadioMetros" Type="float" Mode="In" />
+    <Parameter Name="Giro" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="ConsultarServiciosPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="filtro" Type="int" Mode="In" />
+  </Function>
+  <Function Name="InsertarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="llave" Type="varchar(max)" Mode="In" />
+    <Parameter Name="clave" Type="varchar(max)" Mode="In" />
+    <Parameter Name="fecha" Type="varchar" Mode="In" />
+    <Parameter Name="nombre" Type="varchar(max)" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar(max)" Mode="In" />
+    <Parameter Name="tipo" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="idCategoria" Type="int" Mode="In" />
+    <Parameter Name="idSubCategoria" Type="int" Mode="In" />
+    <Parameter Name="idGiro" Type="int" Mode="In" />
+    <Parameter Name="latitud" Type="varchar" Mode="In" />
+    <Parameter Name="longitud" Type="varchar" Mode="In" />
+    <Parameter Name="rutaFoto" Type="varchar(max)" Mode="In" />
+    <Parameter Name="urlFoto" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UrlVideo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="paginaWeb" Type="varchar(max)" Mode="In" />
+    <Parameter Name="facebook" Type="varchar(max)" Mode="In" />
+    <Parameter Name="youTube" Type="varchar(max)" Mode="In" />
+    <Parameter Name="otraRedSocial" Type="varchar(max)" Mode="In" />
+    <Parameter Name="idSuscriptor" Type="int" Mode="In" />
+    <Parameter Name="fechaEstatus" Type="varchar" Mode="In" />
+    <Parameter Name="estatus" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="Seguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Identificador" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerCalcularComisionLineaIV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="saldoSubcuenta" Type="int" Mode="In" />
+    <Parameter Name="importeOperacion" Type="int" Mode="In" />
+    <Parameter Name="porcentajeObra" Type="float" Mode="In" />
+    <Parameter Name="porcentajeEfectivo" Type="float" Mode="In" />
+    <Parameter Name="operacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerDashBoard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdTarea" Type="int" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasDetalleFlujoTrabajoPorTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdTarea" Type="int" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasFlujoPorVariable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasFlujoPorVista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasFlujoPorVistaDetallePorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasFlujoTrabajoPorEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasFlujoTrabajoPorTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasPorVariableHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstadisticasTrabajoPorEstatusHistorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerEstatusTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdTarea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerFlujoTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="NumeroVersion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerInfoInstancia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdInstancia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerlujoTrabajoPorTareaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerProductividadPorTareaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdTarea" Type="int" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerProductividadVencidas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerProductividadVencidasdDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Clave" Type="nvarchar" Mode="In" />
+    <Parameter Name="Variables" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IdIdioma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="VerVariablesInstancia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdInstancia" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="dbStoreContainer">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CuentaUsuario" EntityType="Self.CuentaUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directorio" EntityType="Self.Directorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlujoTrabajoDocumento" EntityType="Self.FlujoTrabajoDocumento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FTAvanzarActividad" EntityType="Self.FTAvanzarActividad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NivelRed" EntityType="Self.NivelRed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="idPadre" Type="Int32" />
+    <Property Name="idSuscriptor" Type="Int32" />
+    <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <EntityType Name="Directorio">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idCategoria" Type="Int32" />
+    <Property Name="idSubCategoria" Type="Int32" />
+    <Property Name="idGiro" Type="Int32" />
+    <Property Name="latitud" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="longitud" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="geometria" Type="Geometry" />
+    <Property Name="rutaFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="urlVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="paginaWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="youTube" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="otraRedSocial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idSuscriptor" Type="Int32" />
+    <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <EntityType Name="NivelRed">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="comision" Type="Double" />
+    <Property Name="orden" Type="Int32" />
+    <Property Name="socios" Type="Int32" />
+    <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Int16" />
+    <Property Name="operaciones" Type="Int32" />
+    <Property Name="importes" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="modelo" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Directorio" EntityType="Self.Directorio" />
+    <EntitySet Name="NivelRed" EntityType="Self.NivelRed" />
+    <FunctionImport Name="ConsultarHistorial" ReturnType="Collection(db.ConsultarHistorial_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Identificador" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Seguimiento" ReturnType="Collection(db.Seguimiento_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Identificador" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasFlujoTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasFlujoTrabajoPorEstatus_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasHistorialPorVariable" ReturnType="Collection(db.VerEstadisticasHistorialPorVariable_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasHistorialTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasHistorialTrabajoPorEstatus_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasPorVariableHistorial" ReturnType="Collection(db.VerEstadisticasPorVariableHistorial_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasTrabajoPorEstatusHistorial" ReturnType="Collection(db.VerEstadisticasTrabajoPorEstatusHistorial_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerProductividadPorTarea" ReturnType="Collection(db.VerProductividadPorTarea_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerProductividadPorTareaDetalle" ReturnType="Collection(db.VerProductividadPorTareaDetalle_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerFlujoTrabajo" ReturnType="Collection(db.VerFlujoTrabajo_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="NumeroVersion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarDirectorio">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="llave" Mode="In" Type="String" />
+      <Parameter Name="clave" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+      <Parameter Name="idSubCategoria" Mode="In" Type="Int32" />
+      <Parameter Name="idGiro" Mode="In" Type="Int32" />
+      <Parameter Name="latitud" Mode="In" Type="String" />
+      <Parameter Name="longitud" Mode="In" Type="String" />
+      <Parameter Name="rutaFoto" Mode="In" Type="String" />
+      <Parameter Name="urlFoto" Mode="In" Type="String" />
+      <Parameter Name="urlVideo" Mode="In" Type="String" />
+      <Parameter Name="paginaWeb" Mode="In" Type="String" />
+      <Parameter Name="facebook" Mode="In" Type="String" />
+      <Parameter Name="youTube" Mode="In" Type="String" />
+      <Parameter Name="otraRedSocial" Mode="In" Type="String" />
+      <Parameter Name="idSuscriptor" Mode="In" Type="Int32" />
+      <Parameter Name="fechaEstatus" Mode="In" Type="String" />
+      <Parameter Name="estatus" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarDirectorios" ReturnType="Collection(db.ConsultarDirectorios_Result)">
+      <Parameter Name="Latitud" Mode="In" Type="String" />
+      <Parameter Name="Longitud" Mode="In" Type="String" />
+      <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+      <Parameter Name="Giro" Mode="In" Type="String" />
+      <Parameter Name="Categoria" Mode="In" Type="String" />
+      <Parameter Name="SubCategoria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarEstadisticas" ReturnType="Collection(db.ConsultarEstadisticas_Result)">
+      <Parameter Name="Latitud" Mode="In" Type="String" />
+      <Parameter Name="Longitud" Mode="In" Type="String" />
+      <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarNegocios" ReturnType="Collection(db.ConsultarNegocios_Result)">
+      <Parameter Name="Latitud" Mode="In" Type="String" />
+      <Parameter Name="Longitud" Mode="In" Type="String" />
+      <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+      <Parameter Name="Giro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarDirectorio" ReturnType="Collection(db.InsertarDirectorio_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="llave" Mode="In" Type="String" />
+      <Parameter Name="clave" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+      <Parameter Name="idSubCategoria" Mode="In" Type="Int32" />
+      <Parameter Name="idGiro" Mode="In" Type="Int32" />
+      <Parameter Name="latitud" Mode="In" Type="String" />
+      <Parameter Name="longitud" Mode="In" Type="String" />
+      <Parameter Name="rutaFoto" Mode="In" Type="String" />
+      <Parameter Name="urlFoto" Mode="In" Type="String" />
+      <Parameter Name="UrlVideo" Mode="In" Type="String" />
+      <Parameter Name="paginaWeb" Mode="In" Type="String" />
+      <Parameter Name="facebook" Mode="In" Type="String" />
+      <Parameter Name="youTube" Mode="In" Type="String" />
+      <Parameter Name="otraRedSocial" Mode="In" Type="String" />
+      <Parameter Name="idSuscriptor" Mode="In" Type="Int32" />
+      <Parameter Name="fechaEstatus" Mode="In" Type="String" />
+      <Parameter Name="estatus" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <EntitySet Name="FTAvanzarActividad" EntityType="db.FTAvanzarActividad" />
+    <FunctionImport Name="AvanzarActividad" ReturnType="Collection(db.AvanzarActividad_Result)">
+      <Parameter Name="ClaveFlujo" Mode="In" Type="String" />
+      <Parameter Name="Identificador" Mode="In" Type="String" />
+      <Parameter Name="IdAccion" Mode="In" Type="String" />
+      <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+      <Parameter Name="ClavEstatus" Mode="In" Type="String" />
+      <Parameter Name="Parametros" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Usuario" EntityType="db.Usuario" />
+    <FunctionImport Name="VerVariablesInstancia" ReturnType="Collection(db.VerVariablesInstancia_Result)">
+      <Parameter Name="IdInstancia" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CalcularComisionLineaIV" IsComposable="true" ReturnType="Collection(db.CalcularComisionLineaIV_Result)">
+      <Parameter Name="saldoSubcuenta" Mode="In" Type="Int32" />
+      <Parameter Name="importeOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="porcentajeObra" Mode="In" Type="Double" />
+      <Parameter Name="porcentajeEfectivo" Mode="In" Type="Double" />
+      <Parameter Name="operacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerCalcularComisionLineaIV" ReturnType="Collection(db.VerCalcularComisionLineaIV_Result)">
+      <Parameter Name="saldoSubcuenta" Mode="In" Type="Int32" />
+      <Parameter Name="importeOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="porcentajeObra" Mode="In" Type="Double" />
+      <Parameter Name="porcentajeEfectivo" Mode="In" Type="Double" />
+      <Parameter Name="operacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerInfoInstancia" ReturnType="Collection(db.VerInfoInstancia_Result)">
+      <Parameter Name="IdInstancia" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstatusTarea" ReturnType="Collection(db.VerEstatusTarea_Result)">
+      <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasDetalleFlujoTrabajoPorTarea" ReturnType="Collection(db.VerEstadisticasDetalleFlujoTrabajoPorTarea_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasFlujoTrabajoPorTarea" ReturnType="Collection(db.VerEstadisticasFlujoTrabajoPorTarea_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus" ReturnType="Collection(db.VerEstadisticasDetalleFlujoTrabajoPorEstatus_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="IdTarea" Mode="In" Type="Int32" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasFlujoPorVariable" ReturnType="Collection(db.VerEstadisticasFlujoPorVariable_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerlujoTrabajoPorTareaDetalle" ReturnType="Collection(db.VerlujoTrabajoPorTareaDetalle_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Documento" EntityType="db.Documento" />
+    <EntitySet Name="FlujoTrabajoDocumento" EntityType="db.FlujoTrabajoDocumento" />
+    <FunctionImport Name="VerDashBoard" ReturnType="Collection(db.VerDashBoard_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarDocumentosFlujoTrabajo" ReturnType="Collection(db.ConsultarDocumentosFlujoTrabajo_Result)">
+      <Parameter Name="Ideferencia" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerProductividadVencidas" ReturnType="Collection(db.VerProductividadVencidas_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerProductividadVencidasdDetalle" ReturnType="Collection(db.VerProductividadVencidasdDetalle_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasFlujoPorVista" ReturnType="Collection(db.VerEstadisticasFlujoPorVista_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerEstadisticasFlujoPorVistaDetallePorFiltro" ReturnType="Collection(db.VerEstadisticasFlujoPorVistaDetallePorFiltro_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarServiciosPorCliente" ReturnType="Collection(db.ConsultarServiciosPorCliente_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="filtro" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Cliente" EntityType="db.Cliente" />
+    <EntitySet Name="Configuracion" EntityType="db.Configuracion" />
+    <EntitySet Name="CuentaUsuario" EntityType="db.CuentaUsuario" />
+    <EntitySet Name="Grupo" EntityType="db.Grupo" />
+    <EntitySet Name="Persona" EntityType="db.Persona" />
+    <EntitySet Name="Suscripcion" EntityType="db.Suscripcion" />
+    <EntitySet Name="Perfil" EntityType="db.Perfil" />
+    <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="ConsultarHistorial_Result">
+    <Property Type="Int32" Name="Orden" Nullable="true" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus__Instancia" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+    <Property Type="Int32" Name="TiempoActividad" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Observacion" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Seguimiento_Result">
+    <Property Type="Int32" Name="Orden" Nullable="true" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus__Instancia" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+    <Property Type="Int32" Name="TiempoActividad" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Observacion" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasFlujoTrabajoPorEstatus_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasHistorialPorVariable_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasHistorialTrabajoPorEstatus_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasPorVariableHistorial_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasTrabajoPorEstatusHistorial_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerProductividadPorTarea_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerProductividadPorTareaDetalle_Result">
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerFlujoTrabajo_Result">
+    <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="Orden" Nullable="true" />
+    <Property Type="String" Name="FlujoBasico" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="ClaveActividad" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="String" Name="ClaveEstatus" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Perfil" Nullable="true" />
+    <Property Type="String" Name="Responsable" Nullable="true" />
+    <Property Type="Int32" Name="IdTareaSiguiente" Nullable="true" />
+    <Property Type="String" Name="Actividad_Siguiente" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ConsultarDirectorios_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" />
+    <Property Type="String" Name="nombre" Nullable="true" />
+    <Property Type="String" Name="descripcion" Nullable="true" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="correo" Nullable="true" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="1" />
+    <Property Type="Int32" Name="idGiro" Nullable="true" />
+    <Property Type="Int32" Name="idCategoria" Nullable="true" />
+    <Property Type="Int32" Name="idSubCategoria" Nullable="true" />
+    <Property Type="String" Name="latitud" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="longitud" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="rutaFoto" Nullable="true" />
+    <Property Type="String" Name="urlFoto" Nullable="true" />
+    <Property Type="String" Name="urlVideo" Nullable="true" />
+    <Property Type="String" Name="paginaWeb" Nullable="true" />
+    <Property Type="String" Name="facebook" Nullable="true" />
+    <Property Type="String" Name="youTube" Nullable="true" />
+    <Property Type="String" Name="otraRedSocial" Nullable="true" />
+    <Property Type="Int32" Name="idSuscriptor" Nullable="true" />
+    <Property Type="Int16" Name="estatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ConsultarEstadisticas_Result">
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Municipio" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Localidad" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Colonia" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NSE" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="I15" Nullable="true" />
+    <Property Type="Double" Name="I16" Nullable="true" />
+    <Property Type="Double" Name="I17" Nullable="true" />
+    <Property Type="Double" Name="I18" Nullable="true" />
+    <Property Type="Double" Name="I19" Nullable="true" />
+    <Property Type="Double" Name="I20" Nullable="true" />
+    <Property Type="Double" Name="I21" Nullable="true" />
+    <Property Type="Double" Name="I22" Nullable="true" />
+    <Property Type="Double" Name="I23" Nullable="true" />
+    <Property Type="Double" Name="I24" Nullable="true" />
+    <Property Type="Double" Name="I25" Nullable="true" />
+    <Property Type="Double" Name="I26" Nullable="true" />
+    <Property Type="Double" Name="I27" Nullable="true" />
+    <Property Type="Double" Name="I28" Nullable="true" />
+    <Property Type="Double" Name="I29" Nullable="true" />
+    <Property Type="Double" Name="I30" Nullable="true" />
+    <Property Type="Double" Name="I31" Nullable="true" />
+    <Property Type="Double" Name="I32" Nullable="true" />
+    <Property Type="Double" Name="I33" Nullable="true" />
+    <Property Type="Double" Name="I34" Nullable="true" />
+    <Property Type="Double" Name="I35" Nullable="true" />
+    <Property Type="Double" Name="I36" Nullable="true" />
+    <Property Type="Double" Name="I37" Nullable="true" />
+    <Property Type="Double" Name="I38" Nullable="true" />
+    <Property Type="Double" Name="I39" Nullable="true" />
+    <Property Type="Double" Name="I40" Nullable="true" />
+    <Property Type="Double" Name="I41" Nullable="true" />
+    <Property Type="Double" Name="I42" Nullable="true" />
+    <Property Type="Double" Name="I43" Nullable="true" />
+    <Property Type="Double" Name="I44" Nullable="true" />
+    <Property Type="Double" Name="I45" Nullable="true" />
+    <Property Type="Double" Name="I46" Nullable="true" />
+    <Property Type="Double" Name="I47" Nullable="true" />
+    <Property Type="Double" Name="I48" Nullable="true" />
+    <Property Type="Double" Name="I49" Nullable="true" />
+    <Property Type="Double" Name="I50" Nullable="true" />
+    <Property Type="Double" Name="I51" Nullable="true" />
+    <Property Type="Double" Name="I52" Nullable="true" />
+    <Property Type="Double" Name="I53" Nullable="true" />
+    <Property Type="Double" Name="I54" Nullable="true" />
+    <Property Type="Double" Name="I55" Nullable="true" />
+    <Property Type="Double" Name="I56" Nullable="true" />
+    <Property Type="Double" Name="I57" Nullable="true" />
+    <Property Type="Double" Name="I58" Nullable="true" />
+    <Property Type="Double" Name="I59" Nullable="true" />
+    <Property Type="Double" Name="I60" Nullable="true" />
+    <Property Type="Double" Name="I61" Nullable="true" />
+    <Property Type="Double" Name="I62" Nullable="true" />
+    <Property Type="Double" Name="I63" Nullable="true" />
+    <Property Type="Double" Name="I64" Nullable="true" />
+    <Property Type="Double" Name="I65" Nullable="true" />
+    <Property Type="Double" Name="I66" Nullable="true" />
+    <Property Type="Double" Name="I67" Nullable="true" />
+    <Property Type="Double" Name="I68" Nullable="true" />
+    <Property Type="Double" Name="I69" Nullable="true" />
+    <Property Type="Double" Name="I70" Nullable="true" />
+    <Property Type="Double" Name="I71" Nullable="true" />
+    <Property Type="Double" Name="I72" Nullable="true" />
+    <Property Type="Double" Name="I73" Nullable="true" />
+    <Property Type="Double" Name="I74" Nullable="true" />
+    <Property Type="Double" Name="I75" Nullable="true" />
+    <Property Type="Double" Name="I76" Nullable="true" />
+    <Property Type="Double" Name="I77" Nullable="true" />
+    <Property Type="Double" Name="I78" Nullable="true" />
+    <Property Type="Double" Name="I79" Nullable="true" />
+    <Property Type="Double" Name="I80" Nullable="true" />
+    <Property Type="Double" Name="I81" Nullable="true" />
+    <Property Type="Double" Name="I82" Nullable="true" />
+    <Property Type="Double" Name="I83" Nullable="true" />
+    <Property Type="Double" Name="I84" Nullable="true" />
+    <Property Type="Double" Name="I85" Nullable="true" />
+    <Property Type="Double" Name="I86" Nullable="true" />
+    <Property Type="Double" Name="I87" Nullable="true" />
+    <Property Type="Double" Name="I88" Nullable="true" />
+    <Property Type="Double" Name="I89" Nullable="true" />
+    <Property Type="Double" Name="I90" Nullable="true" />
+    <Property Type="Double" Name="I91" Nullable="true" />
+    <Property Type="Double" Name="I92" Nullable="true" />
+    <Property Type="Double" Name="I93" Nullable="true" />
+    <Property Type="Double" Name="I94" Nullable="true" />
+    <Property Type="Double" Name="I95" Nullable="true" />
+    <Property Type="Double" Name="I96" Nullable="true" />
+    <Property Type="Double" Name="I97" Nullable="true" />
+    <Property Type="Double" Name="I98" Nullable="true" />
+    <Property Type="Double" Name="I99" Nullable="true" />
+    <Property Type="Double" Name="I100" Nullable="true" />
+    <Property Type="Double" Name="I101" Nullable="true" />
+    <Property Type="Double" Name="I102" Nullable="true" />
+    <Property Type="Double" Name="I103" Nullable="true" />
+    <Property Type="Double" Name="I104" Nullable="true" />
+    <Property Type="Double" Name="I105" Nullable="true" />
+    <Property Type="Double" Name="I106" Nullable="true" />
+    <Property Type="Double" Name="I107" Nullable="true" />
+    <Property Type="Double" Name="I108" Nullable="true" />
+    <Property Type="Double" Name="I109" Nullable="true" />
+    <Property Type="Double" Name="I110" Nullable="true" />
+    <Property Type="Double" Name="I111" Nullable="true" />
+    <Property Type="Double" Name="I112" Nullable="true" />
+    <Property Type="Double" Name="I113" Nullable="true" />
+    <Property Type="Double" Name="I114" Nullable="true" />
+    <Property Type="Double" Name="I115" Nullable="true" />
+    <Property Type="Double" Name="I116" Nullable="true" />
+    <Property Type="Double" Name="I117" Nullable="true" />
+    <Property Type="Double" Name="I118" Nullable="true" />
+    <Property Type="Double" Name="I119" Nullable="true" />
+    <Property Type="Double" Name="I120" Nullable="true" />
+    <Property Type="Double" Name="I121" Nullable="true" />
+    <Property Type="Double" Name="I122" Nullable="true" />
+    <Property Type="Double" Name="I123" Nullable="true" />
+    <Property Type="Double" Name="I124" Nullable="true" />
+    <Property Type="Double" Name="I125" Nullable="true" />
+    <Property Type="Double" Name="I126" Nullable="true" />
+    <Property Type="Double" Name="I127" Nullable="true" />
+    <Property Type="Double" Name="I128" Nullable="true" />
+    <Property Type="Double" Name="I129" Nullable="true" />
+    <Property Type="Double" Name="I130" Nullable="true" />
+    <Property Type="Double" Name="I131" Nullable="true" />
+    <Property Type="Double" Name="I132" Nullable="true" />
+    <Property Type="Double" Name="I133" Nullable="true" />
+    <Property Type="Double" Name="I134" Nullable="true" />
+    <Property Type="Double" Name="I135" Nullable="true" />
+    <Property Type="Double" Name="I136" Nullable="true" />
+    <Property Type="Double" Name="I137" Nullable="true" />
+    <Property Type="Double" Name="I138" Nullable="true" />
+    <Property Type="Double" Name="I139" Nullable="true" />
+    <Property Type="Double" Name="I140" Nullable="true" />
+    <Property Type="Double" Name="I141" Nullable="true" />
+    <Property Type="Double" Name="I142" Nullable="true" />
+    <Property Type="Double" Name="I143" Nullable="true" />
+    <Property Type="Double" Name="I144" Nullable="true" />
+    <Property Type="Double" Name="I145" Nullable="true" />
+    <Property Type="Double" Name="I146" Nullable="true" />
+    <Property Type="Double" Name="I147" Nullable="true" />
+    <Property Type="Double" Name="I148" Nullable="true" />
+    <Property Type="Double" Name="I149" Nullable="true" />
+    <Property Type="Double" Name="I150" Nullable="true" />
+    <Property Type="Double" Name="I151" Nullable="true" />
+    <Property Type="Double" Name="I152" Nullable="true" />
+    <Property Type="Double" Name="I153" Nullable="true" />
+    <Property Type="Double" Name="I154" Nullable="true" />
+    <Property Type="Double" Name="I155" Nullable="true" />
+    <Property Type="Double" Name="I156" Nullable="true" />
+    <Property Type="Double" Name="I157" Nullable="true" />
+    <Property Type="Double" Name="I158" Nullable="true" />
+    <Property Type="Double" Name="I159" Nullable="true" />
+    <Property Type="Double" Name="I160" Nullable="true" />
+    <Property Type="Double" Name="I161" Nullable="true" />
+    <Property Type="Double" Name="I162" Nullable="true" />
+    <Property Type="Double" Name="I163" Nullable="true" />
+    <Property Type="Double" Name="I164" Nullable="true" />
+    <Property Type="Double" Name="I165" Nullable="true" />
+    <Property Type="Double" Name="I166" Nullable="true" />
+    <Property Type="Double" Name="I167" Nullable="true" />
+    <Property Type="Double" Name="I168" Nullable="true" />
+    <Property Type="Double" Name="I169" Nullable="true" />
+    <Property Type="Double" Name="I170" Nullable="true" />
+    <Property Type="Double" Name="I171" Nullable="true" />
+    <Property Type="Double" Name="I172" Nullable="true" />
+    <Property Type="Double" Name="I173" Nullable="true" />
+    <Property Type="Double" Name="I174" Nullable="true" />
+    <Property Type="Double" Name="I175" Nullable="true" />
+    <Property Type="Double" Name="I176" Nullable="true" />
+    <Property Type="Double" Name="I177" Nullable="true" />
+    <Property Type="Double" Name="I178" Nullable="true" />
+    <Property Type="Double" Name="I179" Nullable="true" />
+    <Property Type="Double" Name="I180" Nullable="true" />
+    <Property Type="Double" Name="I181" Nullable="true" />
+    <Property Type="Double" Name="I182" Nullable="true" />
+    <Property Type="Double" Name="I183" Nullable="true" />
+    <Property Type="Double" Name="I184" Nullable="true" />
+    <Property Type="Double" Name="I185" Nullable="true" />
+    <Property Type="Double" Name="I186" Nullable="true" />
+    <Property Type="Double" Name="I187" Nullable="true" />
+    <Property Type="Double" Name="I188" Nullable="true" />
+    <Property Type="Double" Name="I189" Nullable="true" />
+    <Property Type="Double" Name="I190" Nullable="true" />
+    <Property Type="Double" Name="I191" Nullable="true" />
+    <Property Type="Double" Name="I192" Nullable="true" />
+    <Property Type="Double" Name="I193" Nullable="true" />
+    <Property Type="Double" Name="I194" Nullable="true" />
+    <Property Type="Double" Name="I195" Nullable="true" />
+    <Property Type="Double" Name="I196" Nullable="true" />
+    <Property Type="Double" Name="I197" Nullable="true" />
+    <Property Type="Double" Name="I198" Nullable="true" />
+    <Property Type="Double" Name="I199" Nullable="true" />
+    <Property Type="Double" Name="I200" Nullable="true" />
+    <Property Type="Double" Name="I201" Nullable="true" />
+    <Property Type="Double" Name="I202" Nullable="true" />
+    <Property Type="Double" Name="I203" Nullable="true" />
+    <Property Type="Double" Name="I204" Nullable="true" />
+    <Property Type="Double" Name="I205" Nullable="true" />
+    <Property Type="Double" Name="I206" Nullable="true" />
+    <Property Type="Double" Name="I207" Nullable="true" />
+    <Property Type="Double" Name="I208" Nullable="true" />
+    <Property Type="Double" Name="I209" Nullable="true" />
+    <Property Type="Double" Name="I559" Nullable="true" />
+    <Property Type="Double" Name="I560" Nullable="true" />
+    <Property Type="Double" Name="I561" Nullable="true" />
+    <Property Type="Double" Name="I562" Nullable="true" />
+    <Property Type="Double" Name="I563" Nullable="true" />
+    <Property Type="Double" Name="I564" Nullable="true" />
+    <Property Type="Double" Name="I565" Nullable="true" />
+    <Property Type="Double" Name="I566" Nullable="true" />
+    <Property Type="Double" Name="I567" Nullable="true" />
+    <Property Type="Double" Name="I568" Nullable="true" />
+    <Property Type="Double" Name="I569" Nullable="true" />
+    <Property Type="Double" Name="I570" Nullable="true" />
+    <Property Type="Double" Name="I571" Nullable="true" />
+    <Property Type="Double" Name="I572" Nullable="true" />
+    <Property Type="Double" Name="I573" Nullable="true" />
+    <Property Type="Double" Name="I574" Nullable="true" />
+    <Property Type="Double" Name="I575" Nullable="true" />
+    <Property Type="Double" Name="I576" Nullable="true" />
+    <Property Type="Double" Name="I577" Nullable="true" />
+    <Property Type="Double" Name="I578" Nullable="true" />
+    <Property Type="Double" Name="I579" Nullable="true" />
+    <Property Type="Double" Name="I580" Nullable="true" />
+    <Property Type="Double" Name="I581" Nullable="true" />
+    <Property Type="Double" Name="I582" Nullable="true" />
+    <Property Type="Double" Name="I583" Nullable="true" />
+    <Property Type="Double" Name="I584" Nullable="true" />
+    <Property Type="Double" Name="I585" Nullable="true" />
+    <Property Type="Double" Name="I586" Nullable="true" />
+    <Property Type="Double" Name="I587" Nullable="true" />
+    <Property Type="Double" Name="I588" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ConsultarNegocios_Result">
+    <Property Type="Decimal" Name="Id" Nullable="true" Precision="11" Scale="0" />
+    <Property Type="String" Name="IdGiro" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="75" />
+    <Property Type="String" Name="Giro" Nullable="false" />
+    <Property Type="String" Name="Pers_Ocup" Nullable="true" MaxLength="18" />
+    <Property Type="Decimal" Name="latitud" Nullable="true" Precision="31" Scale="15" />
+    <Property Type="Decimal" Name="longitud" Nullable="true" Precision="31" Scale="15" />
+  </ComplexType>
+  <ComplexType Name="InsertarDirectorio_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" />
+    <Property Type="String" Name="nombre" Nullable="true" />
+    <Property Type="String" Name="descripcion" Nullable="true" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="correo" Nullable="true" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="1" />
+    <Property Type="Int32" Name="idGiro" Nullable="true" />
+    <Property Type="Int32" Name="idCategoria" Nullable="true" />
+    <Property Type="Int32" Name="idSubCategoria" Nullable="true" />
+    <Property Type="String" Name="latitud" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="longitud" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="rutaFoto" Nullable="true" />
+    <Property Type="String" Name="urlFoto" Nullable="true" />
+    <Property Type="String" Name="urlVideo" Nullable="true" />
+    <Property Type="String" Name="paginaWeb" Nullable="true" />
+    <Property Type="String" Name="facebook" Nullable="true" />
+    <Property Type="String" Name="youTube" Nullable="true" />
+    <Property Type="String" Name="otraRedSocial" Nullable="true" />
+    <Property Type="Int32" Name="idSuscriptor" Nullable="true" />
+    <Property Type="Int16" Name="estatus" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="FTAvanzarActividad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="identificador" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idTarea" Type="Int32" />
+    <Property Name="claveEstatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="parametros" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="variables" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="AvanzarActividad_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="idAccion" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="String" Name="clavEstatus" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="parametros" Nullable="true" />
+    <Property Type="String" Name="variables" Nullable="true" />
+    <Property Type="String" Name="llave" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="perfiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="grupos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idEstacionTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="idIdioma" Type="Int32" />
+    <Property Name="sesiones" Type="Int32" />
+    <Property Name="intentos" Type="Int32" />
+    <Property Name="expira" Type="Int16" />
+    <Property Name="fechaVigencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idUsuarioSuperior" Type="Int32" />
+    <Property Name="idSuscriptor" Type="Int32" />
+    <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <ComplexType Name="VerVariablesInstancia_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Variable" Nullable="true" />
+    <Property Type="String" Name="Valor" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CalcularComisionLineaIV_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="concepto" Nullable="true" />
+    <Property Type="String" Name="comision" Nullable="true" />
+    <Property Type="Double" Name="importe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerCalcularComisionLineaIV_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="concepto" Nullable="true" />
+    <Property Type="String" Name="comision" Nullable="true" />
+    <Property Type="Double" Name="importe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerInfoInstancia_Result">
+    <Property Type="Int32" Name="IdInstancia" Nullable="false" />
+    <Property Type="Int32" Name="IdFlujoTrabajo" Nullable="true" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="FechaTernimacion" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="String" Name="Clasificacion" Nullable="true" />
+    <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int32" Name="Numero" Nullable="true" />
+    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Variables" Nullable="true" />
+    <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IdPerfil" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IdEquipo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IdEstatusTarea" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="Activo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstatusTarea_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="false" />
+    <Property Type="Int32" Name="IdEstatus" Nullable="true" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasDetalleFlujoTrabajoPorTarea_Result">
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasFlujoTrabajoPorTarea_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="Importe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasDetalleFlujoTrabajoPorEstatus_Result">
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasFlujoPorVariable_Result">
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="Importe" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMinimo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoPromedio" Nullable="true" />
+    <Property Type="Int32" Name="TiempoMaximo" Nullable="true" />
+    <Property Type="Int32" Name="TiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="ProductividadTiempo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerlujoTrabajoPorTareaDetalle_Result">
+    <Property Type="Int32" Name="IdInstancia" Nullable="false" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="false" />
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="Cuenta" Nullable="true" />
+    <Property Type="Int32" Name="Importe" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="orden" Type="Int32" />
+    <Property Name="idActividad" Type="Int32" />
+    <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <EntityType Name="FlujoTrabajoDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idDocumento" Type="Int32" />
+    <Property Name="idReferencia" Type="Int32" />
+    <Property Name="idActividad" Type="Int32" />
+    <Property Name="idAccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ruta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fechaEstatus" Type="DateTime" Precision="0" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <ComplexType Name="VerDashBoard_Result">
+    <Property Type="Int32" Name="idInstancia" Nullable="false" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="Int32" Name="idActividad" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="genero" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="edad" Nullable="true" />
+    <Property Type="String" Name="fechaTramite" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+    <Property Type="Int32" Name="idPersona" Nullable="false" />
+    <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="correo" Nullable="true" />
+    <Property Type="Int32" Name="idSocio" Nullable="true" />
+    <Property Type="String" Name="socio" Nullable="true" />
+    <Property Type="Int32" Name="idGrupo" Nullable="false" />
+    <Property Type="String" Name="grupo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ConsultarDocumentosFlujoTrabajo_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idReferencia" Nullable="true" />
+    <Property Type="Int32" Name="idDocumento" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="idActividad" Nullable="true" />
+    <Property Type="String" Name="idAccion" Nullable="true" />
+    <Property Type="String" Name="ruta" Nullable="true" />
+    <Property Type="DateTime" Name="fechaEstatus" Nullable="true" Precision="16" />
+    <Property Type="Int16" Name="estatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerProductividadVencidas_Result">
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="Int32" Name="idActividad" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="cuenta" Nullable="true" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+    <Property Type="Int32" Name="tiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="tiempoTranscurrido" Nullable="true" />
+    <Property Type="Int32" Name="productividad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerProductividadVencidasdDetalle_Result">
+    <Property Type="Int32" Name="idInstancia" Nullable="false" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="Int32" Name="idActividad" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estatusTarea" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="cuenta" Nullable="false" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+    <Property Type="DateTime" Name="fechaInicial" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="fechaActual" Nullable="true" Precision="16" />
+    <Property Type="Int32" Name="tiempoLimite" Nullable="true" />
+    <Property Type="Int32" Name="tiempoTranscurrido" Nullable="true" />
+    <Property Type="Int32" Name="productividad" Nullable="true" />
+    <Property Type="Int32" Name="idSocio" Nullable="true" />
+    <Property Type="String" Name="socio" Nullable="true" />
+    <Property Type="Int32" Name="idGrupo" Nullable="true" />
+    <Property Type="String" Name="grupo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasFlujoPorVista_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="clave" Nullable="true" />
+    <Property Type="String" Name="concepto" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="cuenta" Nullable="true" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VerEstadisticasFlujoPorVistaDetallePorFiltro_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="concepto" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="String" Name="claveActividad" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ConsultarServiciosPorCliente_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idInstancia" Nullable="false" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="importe" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int32" Name="idFlujoTrabajo" Nullable="true" />
+    <Property Type="String" Name="servicio" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="descricpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoCliente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="idEstado" Type="Int32" />
+    <Property Name="idSuscriptor" Type="Int32" />
+    <Property Name="idOperacion" Type="Int32" />
+    <Property Name="idUsuario" Type="Int32" />
+    <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="curp" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="telefonoMovil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="referencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="banco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cuentaBanco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="importe" Type="Int32" />
+    <Property Name="saldo" Type="Int32" />
+    <Property Name="rutaFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fechaNacimiento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fechaEntrega" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idSocio" Type="Int32" />
+    <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Int16" />
+  </EntityType>
+  <EntityType Name="Configuracion">
+    <Key>
+      <PropertyRef Name="IdConfiguracion" />
+    </Key>
+    <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IdAplicacion" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="CuentaUsuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstacionTrabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdUsuarioSuperior" Type="Int32" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+    <Property Name="FechaVigencia" Type="DateTime" Precision="0" />
+    <Property Name="FechaCambioEstatus" Type="DateTime" Precision="0" />
+    <Property Name="Tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstatusUsuario" Type="Int16" />
+    <Property Name="Activo" Type="Byte" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="Sesiones" Type="Int32" />
+    <Property Name="Intentos" Type="Int32" />
+    <Property Name="IdIdioma" Type="Int32" />
+    <Property Name="Perfiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Grupos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expira" Type="Boolean" />
+    <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="IdGrupo" />
+    </Key>
+    <Property Name="IdGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoPersona" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="RFC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Curp" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoMovil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Saldo" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Suscripcion">
+    <Key>
+      <PropertyRef Name="IdSuscriptor" />
+    </Key>
+    <Property Name="IdSuscriptor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCorto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="FechaContratacion" Type="DateTime" Precision="0" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+    <Property Name="Servicios" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroUsuarios" Type="Int16" />
+    <Property Name="IdPersona" Type="Int32" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="IdSuscriptorSuperior" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="IdPerfil" />
+    </Key>
+    <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pagina" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="IdMenu" Type="Int32" />
+    <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="VerTramite_Result">
+    <Property Type="Int32" Name="idInstancia" Nullable="false" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="Int32" Name="idActividad" Nullable="false" />
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="correo" Nullable="true" />
+    <Property Type="Int32" Name="idSocio" Nullable="true" />
+    <Property Type="String" Name="socio" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="idGrupo" Nullable="true" />
+    <Property Type="String" Name="grupo" Nullable="true" MaxLength="60" />
+  </ComplexType>
+  <ComplexType Name="ConsultarMisPendientes_Result">
+    <Property Type="Int32" Name="IdHistorial" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int32" Name="Numero" Nullable="true" />
+    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="Int32" Name="IdInstancia" Nullable="true" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+  </ComplexType>
+</Schema>
