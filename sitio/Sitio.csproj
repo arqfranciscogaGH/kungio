@@ -317,10 +317,12 @@
     <Compile Include="Comun\Clases\AdminisradorLLavescs.cs" />
     <Compile Include="Controllers\AdminisradorLLavesController.cs" />
     <Compile Include="Controllers\CargarArchivosController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ConsultarDirectoriosController.cs" />
     <Compile Include="Controllers\ConsultarDocumentosFlujoTrabajoController.cs" />
     <Compile Include="Controllers\ConsultarEstadisticasController.cs" />
     <Compile Include="Controllers\ConsultarNegociosController.cs" />
+    <Compile Include="Controllers\CuentaUsuariosController.cs" />
     <Compile Include="Controllers\DirectoriosController.cs" />
     <Compile Include="Controllers\AvanzarActividadController.cs" />
     <Compile Include="Controllers\FlujoTrabajoDocumentosController.cs" />
