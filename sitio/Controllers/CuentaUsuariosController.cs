@@ -18,13 +18,35 @@ namespace Sitio.Controllers
         private modelo db = new modelo();
 
         // GET: api/Usuarios
-        public IQueryable<CuentaUsuario> GetUsuario(String llave)
+        public async Task<IHttpActionResult> GetUsuario(String llave)
         {
-
+            dynamic resultado = null;
             if (AdminisradorLLaves.validar(llave))
-                return db.CuentaUsuario;
+            {
+                resultado = db.CuentaUsuario;
+                return Ok(resultado);
+            }
+  
             else
-                return null;
+                return NotFound(); 
+        }
+        public async Task<IHttpActionResult> GetUsuarios(int id, String filtro, String llave)
+        {
+            dynamic resultado = null;
+            if (AdminisradorLLaves.validar(llave))
+            {
+                if (filtro == "IdUsuario")
+                    resultado = db.CuentaUsuario.Where(s => s.IdUsuario == id).ToList();
+                else if (filtro == "IdUsuarioSuperior")
+                    resultado = db.CuentaUsuario.Where(s => s.IdUsuarioSuperior == id).ToList();
+                else if (filtro == "IdSuscriptor")
+                    resultado = db.CuentaUsuario.Where(s => s.IdSuscriptor == id).ToList();
+                else
+                    resultado = db.CuentaUsuario;
+                return Ok(resultado);
+            }
+            else
+                return NotFound();
         }
 
         // GET: api/Usuarios/5

@@ -55,6 +55,8 @@
           <Property Name="fechaEntrega" Type="varchar" MaxLength="10" />
           <Property Name="fechaRegistro" Type="varchar" MaxLength="10" />
           <Property Name="idSocio" Type="int" />
+          <Property Name="observaciones" Type="varchar(max)" />
+          <Property Name="acciones" Type="varchar(max)" />
           <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
           <Property Name="estatus" Type="smallint" />
         </EntityType>
@@ -224,6 +226,39 @@
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
+        <EntityType Name="SesionUsuario">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Name="IdSesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaIngreso" Type="smalldatetime" />
+          <Property Name="LlaveSesion" Type="varchar" MaxLength="80" />
+          <Property Name="CuentaUsuario" Type="varchar" MaxLength="100" />
+          <Property Name="Tema" Type="varchar" MaxLength="30" />
+          <Property Name="AgenteSesion" Type="varchar" MaxLength="250" />
+          <Property Name="Dispositivo" Type="varchar" MaxLength="60" />
+          <Property Name="Equipo" Type="varchar" MaxLength="60" />
+          <Property Name="IdEstatusRegistro" Type="tinyint" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="IdIdioma" Type="int" />
+        </EntityType>
+        <EntityType Name="SesionUsuarioHistorial">
+          <Key>
+            <PropertyRef Name="IdSesionHistorial" />
+          </Key>
+          <Property Name="IdSesionHistorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSesion" Type="int" />
+          <Property Name="FechaIngreso" Type="smalldatetime" />
+          <Property Name="LlaveSesion" Type="varchar" MaxLength="80" />
+          <Property Name="CuentaUsuario" Type="varchar" MaxLength="100" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="AgenteSesion" Type="varchar" MaxLength="250" />
+          <Property Name="Dispositivo" Type="varchar" MaxLength="60" />
+          <Property Name="Equipo" Type="varchar" MaxLength="60" />
+          <Property Name="IdSuscriptor" Type="int" />
+          <Property Name="ClaveAplicacion" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Suscripcion">
           <Key>
             <PropertyRef Name="IdSuscriptor" />
@@ -354,7 +389,11 @@
         </Function>
         <Function Name="ConsultarServiciosPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="filtro" Type="int" Mode="In" />
+          <Parameter Name="filtro" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ConsultarSocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Filtro" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="InsertarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -495,6 +534,8 @@
           <EntitySet Name="NivelRed" EntityType="Self.NivelRed" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionUsuario" EntityType="Self.SesionUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionUsuarioHistorial" EntityType="Self.SesionUsuarioHistorial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -655,12 +696,6 @@
             <Parameter Name="Longitud" Mode="In" Type="String" />
             <Parameter Name="RadioMetros" Mode="In" Type="Double" />
           </FunctionImport>
-          <FunctionImport Name="ConsultarNegocios" ReturnType="Collection(db.ConsultarNegocios_Result)">
-            <Parameter Name="Latitud" Mode="In" Type="String" />
-            <Parameter Name="Longitud" Mode="In" Type="String" />
-            <Parameter Name="RadioMetros" Mode="In" Type="Double" />
-            <Parameter Name="Giro" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="InsertarDirectorio" ReturnType="Collection(db.InsertarDirectorio_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="llave" Mode="In" Type="String" />
@@ -779,21 +814,33 @@
           </FunctionImport>
           <FunctionImport Name="ConsultarServiciosPorCliente" ReturnType="Collection(db.ConsultarServiciosPorCliente_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="filtro" Mode="In" Type="Int32" />
+            <Parameter Name="filtro" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="Cliente" EntityType="db.Cliente" />
           <EntitySet Name="Configuracion" EntityType="db.Configuracion" />
           <EntitySet Name="CuentaUsuario" EntityType="db.CuentaUsuario" />
           <EntitySet Name="Grupo" EntityType="db.Grupo" />
           <EntitySet Name="Persona" EntityType="db.Persona" />
           <EntitySet Name="Suscripcion" EntityType="db.Suscripcion" />
           <EntitySet Name="Perfil" EntityType="db.Perfil" />
-          <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
+          <FunctionImport Name="ConsultarNegocios">
+            <Parameter Name="Latitud" Mode="In" Type="String" />
+            <Parameter Name="Longitud" Mode="In" Type="String" />
+            <Parameter Name="RadioMetros" Mode="In" Type="Double" />
+            <Parameter Name="Giro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarSocios" ReturnType="Collection(db.ConsultarSocios_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Filtro" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Cliente" EntityType="db.Cliente" />
+          <EntitySet Name="SesionUsuario" EntityType="db.SesionUsuario" />
+          <EntitySet Name="SesionUsuarioHistorial" EntityType="db.SesionUsuarioHistorial" />
+          <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
             <Parameter Name="Clave" Mode="In" Type="String" />
             <Parameter Name="Variables" Mode="In" Type="String" />
             <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
+          <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
             <Parameter Name="Clave" Mode="In" Type="String" />
             <Parameter Name="Variables" Mode="In" Type="String" />
             <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
@@ -1192,15 +1239,6 @@
           <Property Type="Double" Name="I587" Nullable="true" />
           <Property Type="Double" Name="I588" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="ConsultarNegocios_Result">
-          <Property Type="Decimal" Name="Id" Nullable="true" Precision="11" Scale="0" />
-          <Property Type="String" Name="IdGiro" Nullable="true" MaxLength="6" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="75" />
-          <Property Type="String" Name="Giro" Nullable="false" />
-          <Property Type="String" Name="Pers_Ocup" Nullable="true" MaxLength="18" />
-          <Property Type="Decimal" Name="latitud" Nullable="true" Precision="31" Scale="15" />
-          <Property Type="Decimal" Name="longitud" Nullable="true" Precision="31" Scale="15" />
-        </ComplexType>
         <ComplexType Name="InsertarDirectorio_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="clave" Nullable="true" />
@@ -1501,44 +1539,6 @@
           <Property Type="Int32" Name="idFlujoTrabajo" Nullable="true" />
           <Property Type="String" Name="servicio" Nullable="true" MaxLength="250" />
         </ComplexType>
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="descricpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="idTipoCliente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="idEstado" Type="Int32" />
-          <Property Name="idSuscriptor" Type="Int32" />
-          <Property Name="idOperacion" Type="Int32" />
-          <Property Name="idUsuario" Type="Int32" />
-          <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="curp" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="telefonoMovil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="referencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="banco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="cuentaBanco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="importe" Type="Int32" />
-          <Property Name="saldo" Type="Int32" />
-          <Property Name="rutaFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fechaNacimiento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="fechaEntrega" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="fechaRegistro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="idSocio" Type="Int32" />
-          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="estatus" Type="Int16" />
-        </EntityType>
         <EntityType Name="Configuracion">
           <Key>
             <PropertyRef Name="IdConfiguracion" />
@@ -1635,12 +1635,112 @@
           <Property Name="IdMenu" Type="Int32" />
           <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="ConsultarSocios_Result">
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="String" Name="cuenta" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idUsuarioSuperior" Nullable="true" />
+          <Property Type="Int32" Name="idNivelRed" Nullable="false" />
+          <Property Type="String" Name="claveNivelRed" Nullable="true" />
+          <Property Type="String" Name="nivelRed" Nullable="true" />
+          <Property Type="Int32" Name="orden" Nullable="true" />
+          <Property Type="Double" Name="comision" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="llave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descricpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoCliente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" />
+          <Property Name="idSuscriptor" Type="Int32" />
+          <Property Name="idOperacion" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="curp" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoMovil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="genero" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="referencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="banco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cuentaBanco" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="importe" Type="Int32" />
+          <Property Name="saldo" Type="Int32" />
+          <Property Name="rutaFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="urlFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrega" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="acciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int16" />
+        </EntityType>
+        <EntityType Name="SesionUsuario">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+          </Key>
+          <Property Name="IdSesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+          <Property Name="LlaveSesion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AgenteSesion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Equipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstatusRegistro" Type="Byte" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="IdIdioma" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SesionUsuarioHistorial">
+          <Key>
+            <PropertyRef Name="IdSesionHistorial" />
+          </Key>
+          <Property Name="IdSesionHistorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSesion" Type="Int32" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+          <Property Name="LlaveSesion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="AgenteSesion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Equipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="IdSuscriptor" Type="Int32" />
+          <Property Name="ClaveAplicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="ConsultarMisPendientes_Result">
+          <Property Type="String" Name="Clave" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="IdHistorial" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int32" Name="Numero" Nullable="true" />
+          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Int32" Name="IdInstancia" Nullable="true" />
+          <Property Type="Int32" Name="IdTarea" Nullable="true" />
+          <Property Type="Int32" Name="IdActividad" Nullable="true" />
+          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+        </ComplexType>
         <ComplexType Name="VerTramite_Result">
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="idInstancia" Nullable="false" />
           <Property Type="Int32" Name="idTarea" Nullable="true" />
           <Property Type="Int32" Name="idActividad" Nullable="false" />
-          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="claveActividad" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
@@ -1655,21 +1755,6 @@
           <Property Type="String" Name="socio" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="idGrupo" Nullable="true" />
           <Property Type="String" Name="grupo" Nullable="true" MaxLength="60" />
-        </ComplexType>
-        <ComplexType Name="ConsultarMisPendientes_Result">
-          <Property Type="Int32" Name="IdHistorial" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
-          <Property Type="Int32" Name="Numero" Nullable="true" />
-          <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" />
-          <Property Type="Int32" Name="IdInstancia" Nullable="true" />
-          <Property Type="Int32" Name="IdTarea" Nullable="true" />
-          <Property Type="Int32" Name="IdActividad" Nullable="true" />
-          <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2134,19 +2219,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarNegocios" FunctionName="db.Store.ConsultarNegocios">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db.ConsultarNegocios_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdGiro" ColumnName="IdGiro" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Giro" ColumnName="Giro" />
-                <ScalarProperty Name="Pers_Ocup" ColumnName="Pers_Ocup" />
-                <ScalarProperty Name="latitud" ColumnName="latitud" />
-                <ScalarProperty Name="longitud" ColumnName="longitud" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertarDirectorio" FunctionName="db.Store.InsertarDirectorio">
             <ResultMapping>
               <ComplexTypeMapping TypeName="db.InsertarDirectorio_Result">
@@ -2527,45 +2599,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="db.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="estatus" ColumnName="estatus" />
-                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
-                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
-                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
-                <ScalarProperty Name="saldo" ColumnName="saldo" />
-                <ScalarProperty Name="importe" ColumnName="importe" />
-                <ScalarProperty Name="cuentaBanco" ColumnName="cuentaBanco" />
-                <ScalarProperty Name="banco" ColumnName="banco" />
-                <ScalarProperty Name="referencia" ColumnName="referencia" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="genero" ColumnName="genero" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="curp" ColumnName="curp" />
-                <ScalarProperty Name="rfc" ColumnName="rfc" />
-                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
-                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
-                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
-                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
-                <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
-                <ScalarProperty Name="descricpion" ColumnName="descricpion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="llave" ColumnName="llave" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Configuracion">
             <EntityTypeMapping TypeName="db.Configuracion">
               <MappingFragment StoreEntitySet="Configuracion">
@@ -2668,14 +2701,126 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarNegocios" FunctionName="db.Store.ConsultarNegocios" />
+          <FunctionImportMapping FunctionImportName="ConsultarSocios" FunctionName="db.Store.ConsultarSocios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarSocios_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idUsuarioSuperior" ColumnName="idUsuarioSuperior" />
+                <ScalarProperty Name="idNivelRed" ColumnName="idNivelRed" />
+                <ScalarProperty Name="claveNivelRed" ColumnName="claveNivelRed" />
+                <ScalarProperty Name="nivelRed" ColumnName="nivelRed" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="db.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+                <ScalarProperty Name="acciones" ColumnName="acciones" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+                <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="cuentaBanco" ColumnName="cuentaBanco" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
+                <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
+                <ScalarProperty Name="descricpion" ColumnName="descricpion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="llave" ColumnName="llave" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SesionUsuario">
+            <EntityTypeMapping TypeName="db.SesionUsuario">
+              <MappingFragment StoreEntitySet="SesionUsuario">
+                <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="IdEstatusRegistro" ColumnName="IdEstatusRegistro" />
+                <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+                <ScalarProperty Name="Dispositivo" ColumnName="Dispositivo" />
+                <ScalarProperty Name="AgenteSesion" ColumnName="AgenteSesion" />
+                <ScalarProperty Name="Tema" ColumnName="Tema" />
+                <ScalarProperty Name="CuentaUsuario" ColumnName="CuentaUsuario" />
+                <ScalarProperty Name="LlaveSesion" ColumnName="LlaveSesion" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SesionUsuarioHistorial">
+            <EntityTypeMapping TypeName="db.SesionUsuarioHistorial">
+              <MappingFragment StoreEntitySet="SesionUsuarioHistorial">
+                <ScalarProperty Name="ClaveAplicacion" ColumnName="ClaveAplicacion" />
+                <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+                <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+                <ScalarProperty Name="Dispositivo" ColumnName="Dispositivo" />
+                <ScalarProperty Name="AgenteSesion" ColumnName="AgenteSesion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="CuentaUsuario" ColumnName="CuentaUsuario" />
+                <ScalarProperty Name="LlaveSesion" ColumnName="LlaveSesion" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="IdSesionHistorial" ColumnName="IdSesionHistorial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarMisPendientes" FunctionName="db.Store.ConsultarMisPendientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db.ConsultarMisPendientes_Result">
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Estatus_Flujo" ColumnName="Estatus Flujo" />
+                <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerTramite" FunctionName="db.Store.VerTramite">
             <ResultMapping>
               <ComplexTypeMapping TypeName="db.VerTramite_Result">
+                <ScalarProperty Name="clave" ColumnName="clave" />
                 <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
                 <ScalarProperty Name="idTarea" ColumnName="idTarea" />
                 <ScalarProperty Name="idActividad" ColumnName="idActividad" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="claveActividad" ColumnName="claveActividad" />
                 <ScalarProperty Name="estatus" ColumnName="estatus" />
                 <ScalarProperty Name="identificador" ColumnName="identificador" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2690,25 +2835,6 @@
                 <ScalarProperty Name="socio" ColumnName="socio" />
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
                 <ScalarProperty Name="grupo" ColumnName="grupo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarMisPendientes" FunctionName="db.Store.ConsultarMisPendientes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db.ConsultarMisPendientes_Result">
-                <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Importe" ColumnName="Importe" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
-                <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
-                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
-                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
-                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
-                <ScalarProperty Name="Estatus_Flujo" ColumnName="Estatus Flujo" />
-                <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

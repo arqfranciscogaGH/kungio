@@ -50,6 +50,8 @@
     <Property Name="fechaEntrega" Type="varchar" MaxLength="10" />
     <Property Name="fechaRegistro" Type="varchar" MaxLength="10" />
     <Property Name="idSocio" Type="int" />
+    <Property Name="observaciones" Type="varchar(max)" />
+    <Property Name="acciones" Type="varchar(max)" />
     <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
     <Property Name="estatus" Type="smallint" />
   </EntityType>
@@ -219,6 +221,39 @@
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="Activo" Type="bit" />
   </EntityType>
+  <EntityType Name="SesionUsuario">
+    <Key>
+      <PropertyRef Name="IdSesion" />
+    </Key>
+    <Property Name="IdSesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="FechaIngreso" Type="smalldatetime" />
+    <Property Name="LlaveSesion" Type="varchar" MaxLength="80" />
+    <Property Name="CuentaUsuario" Type="varchar" MaxLength="100" />
+    <Property Name="Tema" Type="varchar" MaxLength="30" />
+    <Property Name="AgenteSesion" Type="varchar" MaxLength="250" />
+    <Property Name="Dispositivo" Type="varchar" MaxLength="60" />
+    <Property Name="Equipo" Type="varchar" MaxLength="60" />
+    <Property Name="IdEstatusRegistro" Type="tinyint" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="IdIdioma" Type="int" />
+  </EntityType>
+  <EntityType Name="SesionUsuarioHistorial">
+    <Key>
+      <PropertyRef Name="IdSesionHistorial" />
+    </Key>
+    <Property Name="IdSesionHistorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSesion" Type="int" />
+    <Property Name="FechaIngreso" Type="smalldatetime" />
+    <Property Name="LlaveSesion" Type="varchar" MaxLength="80" />
+    <Property Name="CuentaUsuario" Type="varchar" MaxLength="100" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="AgenteSesion" Type="varchar" MaxLength="250" />
+    <Property Name="Dispositivo" Type="varchar" MaxLength="60" />
+    <Property Name="Equipo" Type="varchar" MaxLength="60" />
+    <Property Name="IdSuscriptor" Type="int" />
+    <Property Name="ClaveAplicacion" Type="varchar" MaxLength="30" />
+  </EntityType>
   <EntityType Name="Suscripcion">
     <Key>
       <PropertyRef Name="IdSuscriptor" />
@@ -349,7 +384,11 @@
   </Function>
   <Function Name="ConsultarServiciosPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
-    <Parameter Name="filtro" Type="int" Mode="In" />
+    <Parameter Name="filtro" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ConsultarSocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Filtro" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
@@ -490,6 +529,8 @@
     <EntitySet Name="NivelRed" EntityType="Self.NivelRed" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SesionUsuario" EntityType="Self.SesionUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SesionUsuarioHistorial" EntityType="Self.SesionUsuarioHistorial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

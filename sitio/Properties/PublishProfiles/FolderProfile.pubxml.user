@@ -6,7 +6,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\fga\Proyectos\net\kungio\publicacion</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\r\Temp\Publicacion\SitioKungio</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -22,10 +22,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/22/2021 07:55:12</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>02/28/2019 09:06:12</publishTime>
@@ -43,55 +43,64 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>07/30/2013 17:01:46</publishTime>
     </File>
     <File Include="bin/es/System.Net.Http.Formatting.resources.dll">
-      <publishTime>11/28/2018 12:00:46</publishTime>
+      <publishTime>11/28/2018 13:00:46</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
-      <publishTime>11/28/2018 12:04:36</publishTime>
+      <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.resources.dll">
-      <publishTime>11/28/2018 12:01:14</publishTime>
+      <publishTime>11/28/2018 13:01:14</publishTime>
     </File>
     <File Include="bin/es/System.Web.Http.WebHost.resources.dll">
-      <publishTime>11/28/2018 12:03:04</publishTime>
+      <publishTime>11/28/2018 13:03:04</publishTime>
     </File>
     <File Include="bin/es/System.Web.Mvc.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/es/System.Web.Optimization.resources.dll">
-      <publishTime>02/11/2014 14:28:40</publishTime>
+      <publishTime>11/02/2014 14:28:40</publishTime>
     </File>
     <File Include="bin/es/System.Web.Razor.resources.dll">
-      <publishTime>11/28/2018 12:00:22</publishTime>
+      <publishTime>11/28/2018 13:00:22</publishTime>
     </File>
     <File Include="bin/es/System.Web.Webpages.Deployment.resources.dll">
-      <publishTime>11/28/2018 12:04:36</publishTime>
+      <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Webpages.Razor.resources.dll">
-      <publishTime>11/28/2018 12:04:36</publishTime>
+      <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Webpages.resources.dll">
-      <publishTime>11/28/2018 12:04:36</publishTime>
+      <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>07/30/2013 16:57:30</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
-      <publishTime>02/11/2014 14:26:04</publishTime>
+      <publishTime>11/02/2014 14:26:04</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/24/2018 13:38:22</publishTime>
     </File>
+    <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
+      <publishTime>02/18/2022 21:39:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.dll">
+      <publishTime>02/18/2022 21:41:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>02/18/2022 21:46:56</publishTime>
+    </File>
     <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
-      <publishTime>09/06/2013 11:20:12</publishTime>
+      <publishTime>06/09/2013 11:20:12</publishTime>
     </File>
     <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
-      <publishTime>09/06/2013 11:20:22</publishTime>
+      <publishTime>06/09/2013 11:20:22</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>02/18/2018 08:44:54</publishTime>
+      <publishTime>03/17/2021 20:03:36</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/24/2018 13:38:22</publishTime>
@@ -232,10 +241,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/24/2018 13:38:24</publishTime>
     </File>
     <File Include="bin/Sitio.dll">
-      <publishTime>02/15/2022 01:04:51</publishTime>
+      <publishTime>04/01/2022 02:14:10</publishTime>
     </File>
     <File Include="bin/Sitio.pdb">
-      <publishTime>02/15/2022 01:04:51</publishTime>
+      <publishTime>04/01/2022 02:14:10</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>02/18/2022 21:37:40</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 12:00:36</publishTime>
@@ -253,7 +265,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2018 11:59:46</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>02/11/2014 14:26:04</publishTime>
+      <publishTime>11/02/2014 14:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>11/28/2018 12:00:12</publishTime>
@@ -553,7 +565,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>01/06/2021 19:14:10</publishTime>
     </File>
     <File Include="inicio.aspx">
-      <publishTime>08/22/2021 22:02:08</publishTime>
+      <publishTime>02/21/2022 19:35:17</publishTime>
     </File>
     <File Include="js/.DS_Store">
       <publishTime>02/27/2015 09:12:18</publishTime>
@@ -595,7 +607,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/27/2015 09:12:18</publishTime>
     </File>
     <File Include="Models/modelo.edmx.diagram">
-      <publishTime>02/15/2022 00:35:47</publishTime>
+      <publishTime>04/01/2022 02:12:46</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>01/05/2021 22:19:30</publishTime>
@@ -700,7 +712,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>01/05/2021 22:19:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/15/2022 01:04:57</publishTime>
+      <publishTime>02/24/2022 21:51:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

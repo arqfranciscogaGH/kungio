@@ -13,11 +13,11 @@ namespace Sitio.Models
     
     public partial class VerTramite_Result
     {
+        public string clave { get; set; }
         public int idInstancia { get; set; }
         public Nullable<int> idTarea { get; set; }
         public int idActividad { get; set; }
-        public string clave { get; set; }
-        public string actividad { get; set; }
+        public string claveActividad { get; set; }
         public string estatus { get; set; }
         public string identificador { get; set; }
         public string nombre { get; set; }

@@ -13,7 +13,7 @@ namespace Sitio.Controllers
         private modelo db = new modelo();
 
         // GET: api/ServiciosClient
-        public IHttpActionResult GetServicios(int id, int filtro,  String llave)
+        public IHttpActionResult GetServicios(int id, String filtro,  String llave)
         {
             dynamic resultado = null;
             if (AdminisradorLLaves.validar(llave))
@@ -29,7 +29,7 @@ namespace Sitio.Controllers
             dynamic resultado = null;
             if (AdminisradorLLaves.validar(llave))
             {
-                resultado = db.ConsultarServiciosPorCliente(id, 0).ToList();
+                resultado = db.ConsultarServiciosPorCliente(id, "").ToList();
                 return Ok(resultado);
             }
             else

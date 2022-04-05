@@ -305,8 +305,16 @@ C:\r\kun\sitio\bin\es\System.Web.Mvc.resources.dll
 C:\r\kun\sitio\bin\es\System.Net.Http.Formatting.resources.dll
 C:\r\kun\sitio\bin\es\System.Web.Http.resources.dll
 C:\r\kun\sitio\bin\es\System.Web.Http.WebHost.resources.dll
-C:\r\kun\sitio\obj\Release\Sitio.csprojAssemblyReference.cache
 C:\r\kun\sitio\obj\Release\Sitio.csproj.CoreCompileInputs.cache
 C:\r\kun\sitio\obj\Release\Sitio.csproj.CopyComplete
 C:\r\kun\sitio\obj\Release\Sitio.dll
 C:\r\kun\sitio\obj\Release\Sitio.pdb
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.Logging.dll
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.Tokens.dll
+C:\r\kun\sitio\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.Logging.xml
+C:\r\kun\sitio\bin\Microsoft.IdentityModel.Tokens.xml
+C:\r\kun\sitio\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\r\kun\sitio\obj\Release\Sitio.csprojAssemblyReference.cache

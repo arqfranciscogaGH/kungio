@@ -17,36 +17,54 @@ namespace Sitio.Controllers
     {
         private modelo db = new modelo();
 
-        // GET: api/Personas
-        public IQueryable<Cliente> GetPersona(String llave)
+        // GET: api/Clientes
+        public IQueryable<Cliente> GetCliente(String llave)
         {
             if (AdminisradorLLaves.validar(llave))
                 return db.Cliente;
             else
                 return null;
         }
-
-        // GET: api/Personas/5
+        // GET: api/Clientes/5
         [ResponseType(typeof(Cliente))]
-        public async Task<IHttpActionResult> GetPersona(int id, String llave)
+        public async Task<IHttpActionResult> GetCliente(int id, String llave)
         {
             if (AdminisradorLLaves.validar(llave))
             {
-                Cliente persona = await db.Cliente.FindAsync(id);
-                if (persona == null)
+                Cliente cliente = await db.Cliente.FindAsync(id);
+                if (cliente == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(persona);
+                return Ok(cliente);
+            }
+            else
+                return NotFound();
+        }
+        public async Task<IHttpActionResult> GetCliente(int id, String filtro, String llave)
+        {
+            dynamic resultado = null;
+            if (AdminisradorLLaves.validar(llave))
+            {
+                if (filtro == "id")
+                    resultado = db.Cliente.Where(s => s.id == id).ToList();
+                else if (filtro == "idSocio")
+                    resultado = db.Cliente.Where(s => s.idSocio == id).ToList();
+                else if (filtro == "IdSuscriptor")
+                    resultado = db.Cliente.Where(s => s.idSuscriptor == id).ToList();
+                else
+                    resultado = db.Cliente;
+                return Ok(resultado);
             }
             else
                 return NotFound();
         }
 
+
         // PUT: api/Personas/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPersona(int id, String llave, Cliente persona)
+        public async Task<IHttpActionResult> PutCliente(int id, String llave, Cliente cliente)
         {
             if (AdminisradorLLaves.validar(llave))
             {
@@ -55,12 +73,12 @@ namespace Sitio.Controllers
                     return BadRequest(ModelState);
                 }
 
-                if (id != persona.id)
+                if (id != cliente.id)
                 {
                     return BadRequest();
                 }
 
-                db.Entry(persona).State = EntityState.Modified;
+                db.Entry(cliente).State = EntityState.Modified;
 
                 try
                 {
@@ -68,7 +86,7 @@ namespace Sitio.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonaExists(id))
+                    if (!ClienteExists(id))
                     {
                         return NotFound();
                     }
@@ -83,7 +101,7 @@ namespace Sitio.Controllers
 
         // POST: api/Personas
         [ResponseType(typeof(Cliente))]
-        public async Task<IHttpActionResult> PostPersona(String llave, Cliente persona)
+        public async Task<IHttpActionResult> PostCliente(String llave, Cliente cliente)
         {
             if (AdminisradorLLaves.validar(llave))
             {
@@ -92,27 +110,27 @@ namespace Sitio.Controllers
                     return BadRequest(ModelState);
                 }
 
-                db.Cliente.Add(persona);
+                db.Cliente.Add(cliente);
                 await db.SaveChangesAsync();
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = persona.id }, persona);
+            return CreatedAtRoute("DefaultApi", new { id = cliente.id }, cliente);
         }
 
         // DELETE: api/Personas/5
         [ResponseType(typeof(Cliente))]
-        public async Task<IHttpActionResult> DeletePersona(int id, String llave)
+        public async Task<IHttpActionResult> DeleteCliente(int id, String llave)
         {
             if (AdminisradorLLaves.validar(llave))
             {
-                Cliente persona = await db.Cliente.FindAsync(id);
-                if (persona == null)
+                Cliente cliente = await db.Cliente.FindAsync(id);
+                if (cliente == null)
                 {
                     return NotFound();
                 }
 
-                db.Cliente.Remove(persona);
-                return Ok(persona);
+                db.Cliente.Remove(cliente);
+                return Ok(cliente);
             }
             else
                 return NotFound();
@@ -127,7 +145,7 @@ namespace Sitio.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PersonaExists(int id)
+        private bool ClienteExists(int id)
         {
             return db.Cliente.Count(e => e.id == id) > 0;
         }

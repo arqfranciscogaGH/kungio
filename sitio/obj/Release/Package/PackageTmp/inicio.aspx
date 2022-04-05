@@ -61,7 +61,7 @@
                 <!-- logo -->
                 <h1 class="navbar-brand">
                     <a href="#body">
-                        <img src="img/logo/logoKungio13.fw.png" alt="kungio Logo">
+                        <img src="img/logo/logoKungio13.png" alt="kungio Logo">
                     </a>
                 </h1>
                 <!-- /logo -->

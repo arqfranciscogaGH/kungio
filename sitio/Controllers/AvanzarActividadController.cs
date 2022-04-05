@@ -28,7 +28,7 @@ namespace Sitio.Controllers
             if (AdminisradorLLaves.validar(llave))
             {
                 if (clave == "''" || clave == "0")
-                    clave = "LINEAIV";
+                    clave = "";
                 if (idAccion == null || idAccion == "")
                     idAccion = "INICIAR";
                 if (idTarea == null || idTarea == 0)

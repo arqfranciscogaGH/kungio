@@ -44,7 +44,24 @@ namespace Sitio.Controllers
             else
                 return NotFound();
         }
-
+        public async Task<IHttpActionResult> GetPersona(int id, String filtro, String llave)
+        {
+            dynamic resultado = null;
+            if (AdminisradorLLaves.validar(llave))
+            {
+                if (filtro == "id")
+                    resultado = db.Persona.Where(s => s.IdPersona == id).ToList();
+                else if (filtro == "IdUsuario")
+                    resultado = db.Persona.Where(s => s.IdUsuario == id).ToList();
+                else if (filtro == "IdSuscriptor")
+                    resultado = db.Persona.Where(s => s.IdSuscriptor == id).ToList();
+                else
+                    resultado = db.Persona;
+                return Ok(resultado);
+            }
+            else
+                return NotFound();
+        }
         // PUT: api/Personas/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutPersona(int id, String llave, Persona persona)

@@ -13,6 +13,7 @@ namespace Sitio.Models
     
     public partial class ConsultarMisPendientes_Result
     {
+        public string Clave { get; set; }
         public int IdHistorial { get; set; }
         public string Nombre { get; set; }
         public Nullable<decimal> Importe { get; set; }

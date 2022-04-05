@@ -12,17 +12,19 @@ namespace Sitio.Controllers
 {
     public class ConsultarNegociosController : ApiController
     {
+        // http://localhost:50954/api/ConsultarNegocios/''/''/''/''
         private modelo db = new modelo();
-        [ResponseType(typeof(ConsultarNegocios_Result))]
+
         public IHttpActionResult GetConsultarNegocios(String latitud, String longitud, int radio, String giro)
         {
+            dynamic resultado = null;
             if (latitud == "''" || latitud == null)
                 latitud = "19.6592532";
             if (longitud == "''" || longitud == null)
                 longitud = "-99.2127038";
             if (radio == 0 || radio == null)
                 radio = 10;
-            var resultado = db.ConsultarNegocios(latitud, longitud, radio, giro).ToList();
+            //resultado = db.ConsultarNegocios(latitud, longitud, radio, giro);
             return Ok(resultado);
 
         }

@@ -56,8 +56,10 @@ namespace Sitio.Controllers
         
             if (AdminisradorLLaves.validar(llave))
             {
+                //   cuando  un parametro url es '' se debe mandar vacio, es decir parametro = "";
+                //   se envia  el parametro clave  ''  para ver  todos  los flujos
                 if (clave == "''" || clave == "0")
-                    clave = "LINEAIV";
+                    clave = "";
                 if (variables == "''" || variables == "0")
                     variables = "";
                 if (idIdioma == null || idIdioma == 0)
@@ -67,15 +69,16 @@ namespace Sitio.Controllers
                     //variables = variables != String.Empty ? "IdPerfil:" + variables : String.Empty;
                     resultado = db.ConsultarMisPendientes(clave, variables, idIdioma).ToList();
                 }
+                else if (consulta == "Seguimiento")
+                    resultado = db.Seguimiento(clave, variables, idIdioma).ToList();
                 else if (consulta == "VerTramite")
                     resultado = db.VerTramite(clave, variables, idIdioma).ToList();
                 else if (consulta == "VerProductividadVencidas")
                     resultado = db.VerProductividadVencidas(clave, variables, idIdioma).ToList();
+                else if (consulta == "VerProductividadVencidasdDetalle")
+                    resultado = db.VerProductividadVencidasdDetalle(clave, variables, idIdioma).ToList();
                 else if (consulta == "VerEstadisticasFlujoPorVista")
                     resultado = db.VerEstadisticasFlujoPorVista(clave, variables, idIdioma).ToList();
-                else if (consulta == "Seguimiento")
-                    resultado = db.Seguimiento(clave, variables, idIdioma).ToList();
-
 
 
                 else if (consulta == "ConsultarHistorial")
@@ -84,8 +87,7 @@ namespace Sitio.Controllers
                     resultado = db.VerEstadisticasFlujoTrabajoPorTarea(clave, variables, idIdioma).ToList();
                 else if (consulta == "VerlujoTrabajoPorTareaDetalle")
                     resultado = db.VerlujoTrabajoPorTareaDetalle(clave, variables, idIdioma).ToList();
-                else if (consulta == "VerProductividadVencidasdDetalle")
-                    resultado = db.VerProductividadVencidasdDetalle(clave, variables, idIdioma).ToList();
+
                 else if (consulta == "VerEstadisticasFlujoPorVistaDetallePorFiltro")
                     resultado = db.VerEstadisticasFlujoPorVistaDetallePorFiltro(clave, variables, idIdioma).ToList();
                 //  revisar las sigiuientes

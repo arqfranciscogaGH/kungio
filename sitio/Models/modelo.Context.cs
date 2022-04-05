@@ -34,13 +34,15 @@ namespace Sitio.Models
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Documento> Documento { get; set; }
         public virtual DbSet<FlujoTrabajoDocumento> FlujoTrabajoDocumento { get; set; }
-        public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Configuracion> Configuracion { get; set; }
         public virtual DbSet<CuentaUsuario> CuentaUsuario { get; set; }
         public virtual DbSet<Grupo> Grupo { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Suscripcion> Suscripcion { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<SesionUsuario> SesionUsuario { get; set; }
+        public virtual DbSet<SesionUsuarioHistorial> SesionUsuarioHistorial { get; set; }
     
         public virtual ObjectResult<ConsultarHistorial_Result> ConsultarHistorial(string clave, string identificador, Nullable<int> idIdioma)
         {
@@ -349,27 +351,6 @@ namespace Sitio.Models
                 new ObjectParameter("RadioMetros", typeof(double));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarEstadisticas_Result>("ConsultarEstadisticas", latitudParameter, longitudParameter, radioMetrosParameter);
-        }
-    
-        public virtual ObjectResult<ConsultarNegocios_Result> ConsultarNegocios(string latitud, string longitud, Nullable<double> radioMetros, string giro)
-        {
-            var latitudParameter = latitud != null ?
-                new ObjectParameter("Latitud", latitud) :
-                new ObjectParameter("Latitud", typeof(string));
-    
-            var longitudParameter = longitud != null ?
-                new ObjectParameter("Longitud", longitud) :
-                new ObjectParameter("Longitud", typeof(string));
-    
-            var radioMetrosParameter = radioMetros.HasValue ?
-                new ObjectParameter("RadioMetros", radioMetros) :
-                new ObjectParameter("RadioMetros", typeof(double));
-    
-            var giroParameter = giro != null ?
-                new ObjectParameter("Giro", giro) :
-                new ObjectParameter("Giro", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarNegocios_Result>("ConsultarNegocios", latitudParameter, longitudParameter, radioMetrosParameter, giroParameter);
         }
     
         public virtual ObjectResult<InsertarDirectorio_Result> InsertarDirectorio(Nullable<int> id, string llave, string clave, string fecha, string nombre, string descripcion, string tipo, string direccion, string telefono, string correo, Nullable<int> idCategoria, Nullable<int> idSubCategoria, Nullable<int> idGiro, string latitud, string longitud, string rutaFoto, string urlFoto, string urlVideo, string paginaWeb, string facebook, string youTube, string otraRedSocial, Nullable<int> idSuscriptor, string fechaEstatus, Nullable<short> estatus)
@@ -767,34 +748,51 @@ namespace Sitio.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerEstadisticasFlujoPorVistaDetallePorFiltro_Result>("VerEstadisticasFlujoPorVistaDetallePorFiltro", claveParameter, variablesParameter, idIdiomaParameter);
         }
     
-        public virtual ObjectResult<ConsultarServiciosPorCliente_Result> ConsultarServiciosPorCliente(Nullable<int> id, Nullable<int> filtro)
+        public virtual ObjectResult<ConsultarServiciosPorCliente_Result> ConsultarServiciosPorCliente(Nullable<int> id, string filtro)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            var filtroParameter = filtro.HasValue ?
+            var filtroParameter = filtro != null ?
                 new ObjectParameter("filtro", filtro) :
-                new ObjectParameter("filtro", typeof(int));
+                new ObjectParameter("filtro", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarServiciosPorCliente_Result>("ConsultarServiciosPorCliente", idParameter, filtroParameter);
         }
     
-        public virtual ObjectResult<VerTramite_Result> VerTramite(string clave, string variables, Nullable<int> idIdioma)
+        public virtual int ConsultarNegocios(string latitud, string longitud, Nullable<double> radioMetros, string giro)
         {
-            var claveParameter = clave != null ?
-                new ObjectParameter("Clave", clave) :
-                new ObjectParameter("Clave", typeof(string));
+            var latitudParameter = latitud != null ?
+                new ObjectParameter("Latitud", latitud) :
+                new ObjectParameter("Latitud", typeof(string));
     
-            var variablesParameter = variables != null ?
-                new ObjectParameter("Variables", variables) :
-                new ObjectParameter("Variables", typeof(string));
+            var longitudParameter = longitud != null ?
+                new ObjectParameter("Longitud", longitud) :
+                new ObjectParameter("Longitud", typeof(string));
     
-            var idIdiomaParameter = idIdioma.HasValue ?
-                new ObjectParameter("IdIdioma", idIdioma) :
-                new ObjectParameter("IdIdioma", typeof(int));
+            var radioMetrosParameter = radioMetros.HasValue ?
+                new ObjectParameter("RadioMetros", radioMetros) :
+                new ObjectParameter("RadioMetros", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerTramite_Result>("VerTramite", claveParameter, variablesParameter, idIdiomaParameter);
+            var giroParameter = giro != null ?
+                new ObjectParameter("Giro", giro) :
+                new ObjectParameter("Giro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConsultarNegocios", latitudParameter, longitudParameter, radioMetrosParameter, giroParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarSocios_Result> ConsultarSocios(Nullable<int> id, string filtro)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var filtroParameter = filtro != null ?
+                new ObjectParameter("Filtro", filtro) :
+                new ObjectParameter("Filtro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarSocios_Result>("ConsultarSocios", idParameter, filtroParameter);
         }
     
         public virtual ObjectResult<ConsultarMisPendientes_Result> ConsultarMisPendientes(string clave, string variables, Nullable<int> idIdioma)
@@ -812,6 +810,23 @@ namespace Sitio.Models
                 new ObjectParameter("IdIdioma", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarMisPendientes_Result>("ConsultarMisPendientes", claveParameter, variablesParameter, idIdiomaParameter);
+        }
+    
+        public virtual ObjectResult<VerTramite_Result> VerTramite(string clave, string variables, Nullable<int> idIdioma)
+        {
+            var claveParameter = clave != null ?
+                new ObjectParameter("Clave", clave) :
+                new ObjectParameter("Clave", typeof(string));
+    
+            var variablesParameter = variables != null ?
+                new ObjectParameter("Variables", variables) :
+                new ObjectParameter("Variables", typeof(string));
+    
+            var idIdiomaParameter = idIdioma.HasValue ?
+                new ObjectParameter("IdIdioma", idIdioma) :
+                new ObjectParameter("IdIdioma", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerTramite_Result>("VerTramite", claveParameter, variablesParameter, idIdiomaParameter);
         }
     }
 }

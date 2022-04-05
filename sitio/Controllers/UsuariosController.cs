@@ -18,22 +18,22 @@ namespace Sitio.Controllers
         private modelo db = new modelo();
 
         // GET: api/Usuarios
-        public IQueryable<Usuario> GetUsuario(String llave)
+        public IQueryable<CuentaUsuario> GetUsuario(String llave)
         {
 
             if (AdminisradorLLaves.validar(llave))
-                return db.Usuario;
+                return db.CuentaUsuario;
             else
                 return null;
         }
 
         // GET: api/Usuarios/5
-        [ResponseType(typeof(Usuario))]
+        [ResponseType(typeof(CuentaUsuario))]
         public async Task<IHttpActionResult> GetUsuario(int id, String llave)
         {
             if (AdminisradorLLaves.validar(llave))
             {
-                Usuario usuario = await db.Usuario.FindAsync(id);
+                CuentaUsuario usuario = await db.CuentaUsuario.FindAsync(id);
                 if (usuario == null)
                 {
                     return NotFound();
@@ -47,7 +47,7 @@ namespace Sitio.Controllers
 
         // PUT: api/Usuarios/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUsuario(int id, String llave, Usuario usuario)
+        public async Task<IHttpActionResult> PutUsuario(int id, String llave, CuentaUsuario usuario)
         {
             if (AdminisradorLLaves.validar(llave))
             {
@@ -57,7 +57,7 @@ namespace Sitio.Controllers
                     return BadRequest(ModelState);
                 }
 
-                if (id != usuario.id)
+                if (id != usuario.IdUsuario)
                 {
                     return BadRequest();
                 }
@@ -84,8 +84,8 @@ namespace Sitio.Controllers
         }
 
         // POST: api/Usuarios
-        [ResponseType(typeof(Usuario))]
-        public async Task<IHttpActionResult> PostUsuario( String llave,Usuario usuario)
+        [ResponseType(typeof(CuentaUsuario))]
+        public async Task<IHttpActionResult> PostUsuario( String llave, CuentaUsuario usuario)
         {
             if (AdminisradorLLaves.validar(llave))
             {
@@ -94,10 +94,10 @@ namespace Sitio.Controllers
                     return BadRequest(ModelState);
                 }
 
-                db.Usuario.Add(usuario);
+                db.CuentaUsuario.Add(usuario);
                 await db.SaveChangesAsync();
             }
-            return CreatedAtRoute("DefaultApi", new { id = usuario.id }, usuario);
+            return CreatedAtRoute("DefaultApi", new { id = usuario.IdUsuario }, usuario);
         }
 
         // DELETE: api/Usuarios/5
@@ -106,13 +106,13 @@ namespace Sitio.Controllers
         {
             if (AdminisradorLLaves.validar(llave))
             {
-                Usuario usuario = await db.Usuario.FindAsync(id);
+                CuentaUsuario usuario = await db.CuentaUsuario.FindAsync(id);
                 if (usuario == null)
                 {
                     return NotFound();
                 }
 
-                db.Usuario.Remove(usuario);
+                db.CuentaUsuario.Remove(usuario);
                 await db.SaveChangesAsync();
                 return Ok(usuario);
             }
@@ -131,7 +131,7 @@ namespace Sitio.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return db.Usuario.Count(e => e.id == id) > 0;
+            return db.CuentaUsuario.Count(e => e.IdUsuario == id) > 0;
         }
     }
 }

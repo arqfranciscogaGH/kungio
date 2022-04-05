@@ -458,19 +458,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ConsultarNegocios" FunctionName="db.Store.ConsultarNegocios">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="db.ConsultarNegocios_Result">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IdGiro" ColumnName="IdGiro" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Giro" ColumnName="Giro" />
-          <ScalarProperty Name="Pers_Ocup" ColumnName="Pers_Ocup" />
-          <ScalarProperty Name="latitud" ColumnName="latitud" />
-          <ScalarProperty Name="longitud" ColumnName="longitud" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="InsertarDirectorio" FunctionName="db.Store.InsertarDirectorio">
       <ResultMapping>
         <ComplexTypeMapping TypeName="db.InsertarDirectorio_Result">
@@ -851,45 +838,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="Cliente">
-      <EntityTypeMapping TypeName="db.Cliente">
-        <MappingFragment StoreEntitySet="Cliente">
-          <ScalarProperty Name="estatus" ColumnName="estatus" />
-          <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
-          <ScalarProperty Name="idSocio" ColumnName="idSocio" />
-          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
-          <ScalarProperty Name="fecha" ColumnName="fecha" />
-          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-          <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
-          <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
-          <ScalarProperty Name="saldo" ColumnName="saldo" />
-          <ScalarProperty Name="importe" ColumnName="importe" />
-          <ScalarProperty Name="cuentaBanco" ColumnName="cuentaBanco" />
-          <ScalarProperty Name="banco" ColumnName="banco" />
-          <ScalarProperty Name="referencia" ColumnName="referencia" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="genero" ColumnName="genero" />
-          <ScalarProperty Name="correo" ColumnName="correo" />
-          <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="curp" ColumnName="curp" />
-          <ScalarProperty Name="rfc" ColumnName="rfc" />
-          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
-          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-          <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
-          <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
-          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
-          <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
-          <ScalarProperty Name="descricpion" ColumnName="descricpion" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="clave" ColumnName="clave" />
-          <ScalarProperty Name="llave" ColumnName="llave" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Configuracion">
       <EntityTypeMapping TypeName="db.Configuracion">
         <MappingFragment StoreEntitySet="Configuracion">
@@ -992,14 +940,126 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ConsultarNegocios" FunctionName="db.Store.ConsultarNegocios" />
+    <FunctionImportMapping FunctionImportName="ConsultarSocios" FunctionName="db.Store.ConsultarSocios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db.ConsultarSocios_Result">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idUsuarioSuperior" ColumnName="idUsuarioSuperior" />
+          <ScalarProperty Name="idNivelRed" ColumnName="idNivelRed" />
+          <ScalarProperty Name="claveNivelRed" ColumnName="claveNivelRed" />
+          <ScalarProperty Name="nivelRed" ColumnName="nivelRed" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="db.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="fechaEstatus" ColumnName="fechaEstatus" />
+          <ScalarProperty Name="acciones" ColumnName="acciones" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+          <ScalarProperty Name="urlFoto" ColumnName="urlFoto" />
+          <ScalarProperty Name="rutaFoto" ColumnName="rutaFoto" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="cuentaBanco" ColumnName="cuentaBanco" />
+          <ScalarProperty Name="banco" ColumnName="banco" />
+          <ScalarProperty Name="referencia" ColumnName="referencia" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
+          <ScalarProperty Name="idSuscriptor" ColumnName="idSuscriptor" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
+          <ScalarProperty Name="descricpion" ColumnName="descricpion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="llave" ColumnName="llave" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SesionUsuario">
+      <EntityTypeMapping TypeName="db.SesionUsuario">
+        <MappingFragment StoreEntitySet="SesionUsuario">
+          <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+          <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+          <ScalarProperty Name="IdEstatusRegistro" ColumnName="IdEstatusRegistro" />
+          <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+          <ScalarProperty Name="Dispositivo" ColumnName="Dispositivo" />
+          <ScalarProperty Name="AgenteSesion" ColumnName="AgenteSesion" />
+          <ScalarProperty Name="Tema" ColumnName="Tema" />
+          <ScalarProperty Name="CuentaUsuario" ColumnName="CuentaUsuario" />
+          <ScalarProperty Name="LlaveSesion" ColumnName="LlaveSesion" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SesionUsuarioHistorial">
+      <EntityTypeMapping TypeName="db.SesionUsuarioHistorial">
+        <MappingFragment StoreEntitySet="SesionUsuarioHistorial">
+          <ScalarProperty Name="ClaveAplicacion" ColumnName="ClaveAplicacion" />
+          <ScalarProperty Name="IdSuscriptor" ColumnName="IdSuscriptor" />
+          <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+          <ScalarProperty Name="Dispositivo" ColumnName="Dispositivo" />
+          <ScalarProperty Name="AgenteSesion" ColumnName="AgenteSesion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="CuentaUsuario" ColumnName="CuentaUsuario" />
+          <ScalarProperty Name="LlaveSesion" ColumnName="LlaveSesion" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="IdSesionHistorial" ColumnName="IdSesionHistorial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ConsultarMisPendientes" FunctionName="db.Store.ConsultarMisPendientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db.ConsultarMisPendientes_Result">
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Importe" ColumnName="Importe" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+          <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+          <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+          <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+          <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+          <ScalarProperty Name="Estatus_Flujo" ColumnName="Estatus Flujo" />
+          <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="VerTramite" FunctionName="db.Store.VerTramite">
       <ResultMapping>
         <ComplexTypeMapping TypeName="db.VerTramite_Result">
+          <ScalarProperty Name="clave" ColumnName="clave" />
           <ScalarProperty Name="idInstancia" ColumnName="idInstancia" />
           <ScalarProperty Name="idTarea" ColumnName="idTarea" />
           <ScalarProperty Name="idActividad" ColumnName="idActividad" />
-          <ScalarProperty Name="clave" ColumnName="clave" />
-          <ScalarProperty Name="actividad" ColumnName="actividad" />
+          <ScalarProperty Name="claveActividad" ColumnName="claveActividad" />
           <ScalarProperty Name="estatus" ColumnName="estatus" />
           <ScalarProperty Name="identificador" ColumnName="identificador" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1014,25 +1074,6 @@
           <ScalarProperty Name="socio" ColumnName="socio" />
           <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
           <ScalarProperty Name="grupo" ColumnName="grupo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ConsultarMisPendientes" FunctionName="db.Store.ConsultarMisPendientes">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="db.ConsultarMisPendientes_Result">
-          <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Importe" ColumnName="Importe" />
-          <ScalarProperty Name="Numero" ColumnName="Numero" />
-          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
-          <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
-          <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
-          <ScalarProperty Name="Identificador" ColumnName="Identificador" />
-          <ScalarProperty Name="Actividad" ColumnName="Actividad" />
-          <ScalarProperty Name="Estatus_Flujo" ColumnName="Estatus Flujo" />
-          <ScalarProperty Name="Estatus_Tarea" ColumnName="Estatus Tarea" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -50,6 +50,8 @@
     <Property Name="fechaEntrega" Type="varchar" MaxLength="10" />
     <Property Name="fechaRegistro" Type="varchar" MaxLength="10" />
     <Property Name="idSocio" Type="int" />
+    <Property Name="observaciones" Type="varchar(max)" />
+    <Property Name="acciones" Type="varchar(max)" />
     <Property Name="fechaEstatus" Type="varchar" MaxLength="10" />
     <Property Name="estatus" Type="smallint" />
   </EntityType>
@@ -349,7 +351,11 @@
   </Function>
   <Function Name="ConsultarServiciosPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
-    <Parameter Name="filtro" Type="int" Mode="In" />
+    <Parameter Name="filtro" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ConsultarSocios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Filtro" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertarDirectorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
