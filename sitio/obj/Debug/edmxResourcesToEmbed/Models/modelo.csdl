@@ -279,16 +279,6 @@
     <EntitySet Name="Persona" EntityType="db.Persona" />
     <EntitySet Name="Suscripcion" EntityType="db.Suscripcion" />
     <EntitySet Name="Perfil" EntityType="db.Perfil" />
-    <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
-      <Parameter Name="Clave" Mode="In" Type="String" />
-      <Parameter Name="Variables" Mode="In" Type="String" />
-      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
-      <Parameter Name="Clave" Mode="In" Type="String" />
-      <Parameter Name="Variables" Mode="In" Type="String" />
-      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="ConsultarNegocios">
       <Parameter Name="Latitud" Mode="In" Type="String" />
       <Parameter Name="Longitud" Mode="In" Type="String" />
@@ -300,6 +290,18 @@
       <Parameter Name="Filtro" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Cliente" EntityType="db.Cliente" />
+    <EntitySet Name="SesionUsuario" EntityType="db.SesionUsuario" />
+    <EntitySet Name="SesionUsuarioHistorial" EntityType="db.SesionUsuarioHistorial" />
+    <FunctionImport Name="ConsultarMisPendientes" ReturnType="Collection(db.ConsultarMisPendientes_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="VerTramite" ReturnType="Collection(db.VerTramite_Result)">
+      <Parameter Name="Clave" Mode="In" Type="String" />
+      <Parameter Name="Variables" Mode="In" Type="String" />
+      <Parameter Name="IdIdioma" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ConsultarHistorial_Result">
     <Property Type="Int32" Name="Orden" Nullable="true" />
@@ -1090,42 +1092,6 @@
     <Property Name="IdMenu" Type="Int32" />
     <Property Name="Privilegios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <ComplexType Name="VerTramite_Result">
-    <Property Type="Int32" Name="idInstancia" Nullable="false" />
-    <Property Type="Int32" Name="idTarea" Nullable="true" />
-    <Property Type="Int32" Name="idActividad" Nullable="false" />
-    <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="actividad" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
-    <Property Type="Int32" Name="importe" Nullable="true" />
-    <Property Type="Int32" Name="id" Nullable="true" />
-    <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="correo" Nullable="true" />
-    <Property Type="Int32" Name="idSocio" Nullable="true" />
-    <Property Type="String" Name="socio" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="idGrupo" Nullable="true" />
-    <Property Type="String" Name="grupo" Nullable="true" MaxLength="60" />
-  </ComplexType>
-  <ComplexType Name="ConsultarMisPendientes_Result">
-    <Property Type="Int32" Name="IdHistorial" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
-    <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int32" Name="Numero" Nullable="true" />
-    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Descripcion" Nullable="true" />
-    <Property Type="Int32" Name="IdInstancia" Nullable="true" />
-    <Property Type="Int32" Name="IdTarea" Nullable="true" />
-    <Property Type="Int32" Name="IdActividad" Nullable="true" />
-    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
-  </ComplexType>
   <ComplexType Name="ConsultarSocios_Result">
     <Property Type="Int32" Name="idUsuario" Nullable="false" />
     <Property Type="String" Name="cuenta" Nullable="true" MaxLength="100" />
@@ -1177,4 +1143,74 @@
     <Property Name="fechaEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="estatus" Type="Int16" />
   </EntityType>
+  <EntityType Name="SesionUsuario">
+    <Key>
+      <PropertyRef Name="IdSesion" />
+    </Key>
+    <Property Name="IdSesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="LlaveSesion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CuentaUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Tema" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="AgenteSesion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Equipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstatusRegistro" Type="Byte" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="IdIdioma" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SesionUsuarioHistorial">
+    <Key>
+      <PropertyRef Name="IdSesionHistorial" />
+    </Key>
+    <Property Name="IdSesionHistorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSesion" Type="Int32" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="LlaveSesion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CuentaUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="AgenteSesion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Dispositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Equipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="IdSuscriptor" Type="Int32" />
+    <Property Name="ClaveAplicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="ConsultarMisPendientes_Result">
+    <Property Type="String" Name="Clave" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IdHistorial" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int32" Name="Numero" Nullable="true" />
+    <Property Type="String" Name="Referencia" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="Int32" Name="IdInstancia" Nullable="true" />
+    <Property Type="Int32" Name="IdTarea" Nullable="true" />
+    <Property Type="Int32" Name="IdActividad" Nullable="true" />
+    <Property Type="String" Name="Identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Actividad" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Flujo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Estatus_Tarea" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="VerTramite_Result">
+    <Property Type="String" Name="clave" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="idInstancia" Nullable="false" />
+    <Property Type="Int32" Name="idTarea" Nullable="true" />
+    <Property Type="Int32" Name="idActividad" Nullable="false" />
+    <Property Type="String" Name="claveActividad" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="estatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="importe" Nullable="true" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="fechaNacimiento" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="curp" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="telefonoMovil" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="correo" Nullable="true" />
+    <Property Type="Int32" Name="idSocio" Nullable="true" />
+    <Property Type="String" Name="socio" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="idGrupo" Nullable="true" />
+    <Property Type="String" Name="grupo" Nullable="true" MaxLength="60" />
+  </ComplexType>
 </Schema>
